@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 def rm_chars(string, *args):
     string = string.strip()
     for char in args:
-        print char
+        print(char)
         string.replace(char, "")
     return string
 
@@ -21,7 +21,7 @@ def line_number_gen():
         yield number
 
 line_number = line_number_gen()
-f = file("sarahs_schedule.html")
+f = open("sarahs_schedule.html")
 soup = BeautifulSoup(f)
 soup.prettify()
 soup.encode('ascii', 'ignore')
@@ -31,10 +31,10 @@ for row in soup.find_all("td"):
     if str(row['class']) == "[u'line-content']":
         row_text = row.get_text().strip().replace("&nbsp;", "")
         if row_text == \
-        "For tips on printing the class schedule, click help in upper right corner.":
-            flag = True
+        "for tips on printing the class schedule, click help in upper right corner.":
+            flag = true
         elif len(row.contents) == 1 and row_text != "" and flag:
-            print next(line_number), row_text
+            print(next(line_number), row_text)
 flag = False
 for span in soup.find_all("td"):
     try:
@@ -42,7 +42,7 @@ for span in soup.find_all("td"):
         if span_text == "Instructor":
             flag = True
         elif span_text != "" :
-            print span_text
+            print(span_text)
         elif span_text == "Credits" and flag:
             flag = False
     except:
