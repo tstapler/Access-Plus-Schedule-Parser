@@ -25,25 +25,26 @@ f = open("sarahs_schedule.html")
 soup = BeautifulSoup(f)
 soup.prettify()
 soup.encode('ascii', 'ignore')
-flag = False
+flag = False 
 for row in soup.find_all("td"):
 
     if str(row['class']) == "[u'line-content']":
         row_text = row.get_text().strip().replace("&nbsp;", "")
         if row_text == \
-        "for tips on printing the class schedule, click help in upper right corner.":
-            flag = true
+        "For tips on printing the class schedule, click help in upper right corner.":
+            flag = True
         elif len(row.contents) == 1 and row_text != "" and flag:
-            print(next(line_number), row_text)
+            print(row_text.encode('utf-8'))
 flag = False
 for span in soup.find_all("td"):
     try:
         span_text = stripAllTags(span.get_text(strip=True).encode('utf-8'))
         if span_text == "Instructor":
             flag = True
-        elif span_text != "" :
-            print(span_text)
         elif span_text == "Credits" and flag:
             flag = False
+        elif span_text != "" and flag:
+            print(span_text)
+        
     except:
         pass
