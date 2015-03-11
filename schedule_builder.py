@@ -1,117 +1,152 @@
 from bs4 import BeautifulSoup
 import re
-def stripAllTags(html):
+import pprint
+
+
+class ScheduleParser():
+
+    def __init__(self):
+        self.step_numb = 0 # Current Step
+        self.class_numb = 0 # Current Class
+        self.curr_string = ""
+        self.classes = []
+        self.fields = {
+            "section": "",
+            "course_name": "",
+            "credits": "",
+            "recs": "",
+            "meeting_dates": "",
+            "days": "",
+            "start_time": "",
+            "end_time": "",
+            "location": ""
+        }
+        self.field_patterns = [
+            re.compile('section *(.*)'),
+            re.compile('(\d\.\d)'),
+            re.compile('^(\d\d/\d\d/\d\d)-(\d\d/\d\d/\d\d)'),
+            re.compile('[MTWRF]'),
+            re.compile('\d\d:\d\d \s*')
+        ]
+
+    def __str__(self):
+        return str(self.classes)
+
+    def set_curr_string(self, string):
+        self.curr_string = string
+
+    def parse(self):
+        #print("Step:", self.step_numb)
+        if self.step_numb == 0:
+            self.section()
+        elif self.step_numb == 1:
+            self.course_name()
+        elif self.step_numb == 2:
+            self.credits()
+        elif self.step_numb == 3:
+            self.requirements_meeting_dates()
+        elif self.step_numb == 4:
+            self.days()
+        elif self.step_numb == 5:
+            self.times()
+        elif self.step_numb == 6:
+            self.times()
+        elif self.step_numb == 7:
+            self.location()
+
+    def strip_all_tags(html):
         if html is None:
                 return None
         return ''.join( BeautifulSoup(html).findAll(text= True ) )
 
-def section(string, numb):
-    #Return the Section identifier
-    results = re.match(field_patterns[0],string)
-    fields["section"].append(results.group(1))
-    numb += 1
-    return numb
+    def section(self):
+        #Return the Section identifier
+        results = re.match(self.field_patterns[0],self.curr_string)
+        if results:
+            self.fields["section"] = results.group(1)
+            self.step_numb += 1
 
-def courseName(string, numb):
-    fields["course_name"].append(string)
-    numb += 1
-    return numb
+    def course_name(self):
+        self.fields["course_name"] = self.curr_string
+        self.step_numb += 1
 
-def credits(string, numb):
-    results = re.match(field_patterns[1],string)
-    if(results):
-        fields["credits"].append(results.group(1))
+    def credits(self):
+        results = re.match(self.field_patterns[1],self.curr_string)
+        if(results):
+            self.fields["credits"] = results.group(1)
 
-    elif string == "Credits":
-        numb += 1
+        elif self.curr_string == "Credits":
+            self.step_numb += 1
 
-    return numb
+    def requirements_meeting_dates(self):
+        if self.curr_string == "ARR.":
+            self.step_numb = 0
+            return
+        results = re.match(self.field_patterns[2],self.curr_string)
+        if results:
+            self.step_numb += 1
+            self.fields["meeting_dates"] = (results.group(1),results.group(2))
+        else:
+            self.fields["recs"] = self.curr_string
 
-def requirements_meeting_dates(string, numb):
-    results = re.match(field_patterns[2],string)
-    if results:
-        numb += 1
-        fields["meeting_dates"].append((results.group(0),results.group(1)))
-    else:
-        fields["recs"].append(string)
-    return numb
+    def days(self):
+        results = re.findall(self.field_patterns[3], self.curr_string)
+        if results:
+            for result in results:
+                self.fields["days"] += result
+            self.fields["days"] = " ".join(self.fields["days"])
+            self.step_numb += 1
+
+    def times(self):
+        results = re.match(self.field_patterns[4], self.curr_string)
+        if results:
+            if self.step_numb == 5:
+                self.fields["start_time"] = self.curr_string
+            elif self.step_numb == 6:
+                self.fields["end_time"] = self.curr_string
+            self.step_numb += 1
+
+    def location(self):
+        self.fields["location"] = self.curr_string
+
+        self.classes.append(self.fields)
+        print(self.classes)
+        for field in self.fields:
+            self.fields[field] = ""
+        self.step_numb = 0
+        self.class_numb += 1
 
 
-def days(string, numb):
-    results = re.findall(field_patterns[3], string)
-    if results:
-        for result in results:
-            fields["days"].append(result)
-        numb += 1
-    return numb
 
+if __name__ == "__main__":
 
-def times(string, numb):
-    results = re.match(field_patterns[4], string)
-    if results:
-        if numb == 6:
-            fields["start_time"].append(results.group(0))
-        elif numb == 7:
-            fields["end_time"].append(results.group(0))
-        numb += 1
-    return numb
+    f = open("sarahs_schedule.html")
+    
+    soup = BeautifulSoup(f)
+    parser = ScheduleParser()
+    
+    soup.prettify()
+    soup.encode('utf-8', 'ignore')
 
+    printing = False
 
-def location(string, numb):
-    fields["location"].append(string)
-    numb += 1
-    return numb
+    for span in soup.find_all("td"):
 
+        try:
+            span_text = ScheduleParser.strip_all_tags(span.get_text(strip=True))
+            parser.set_curr_string(span_text)
+            if "section" in span_text:
+                printing = True
+                print(span_text.strip())
+                parser.parse()
 
-f = open("sarahs_schedule.html")
-soup = BeautifulSoup(f)
-soup.prettify()
-soup.encode('utf-8', 'ignore')
-
-printing = False
-
-class_numb = 0
-field_numb = 0
-
-fields = {
-   "section": [],
-    "course_name": [],
-    "credits": [],
-    "recs": [],
-    "meeting_dates": [],
-    "days": [],
-    "start_time": [],
-    "end_time": [],
-    "location": []
-}
-
-field_patterns = [
-    re.compile('section *(.*)'),
-    re.compile('(\d\.\d)'),
-    re.compile('^(\d\d/\d\d/\d\d)-(\d\d/\d\d/\d\d)'),
-    re.compile('[MTWRF]'),
-    re.compile('\d\d:\d\d \s*')
-]
-
-options = {
-    0 : section,
-
-}
-for span in soup.find_all("td"):
-
-    try:
-        span_text = stripAllTags(span.get_text(strip=True).encode('ascii', 'replace'))
-        if "section" in span_text:
-            printing = True
-            print(span_text.strip())
-            class_numb += 1
-        elif "FOOTER" in span_text and printing:
-            printing = False
-        elif "%=" in span_text and printing:
+            elif "FOOTER" in span_text and printing:
+                printing = False
+            elif "%=" in span_text and printing:
+                continue
+            elif span_text != "" and span_text != "\n" and printing:
+                print(span_text.strip())
+                parser.parse()
+        except:
             continue
-        elif span_text != "" and printing:
-
-            print(span_text.strip())
-    except:
-        continue
-
+    pprint.pprint(str(parser))
