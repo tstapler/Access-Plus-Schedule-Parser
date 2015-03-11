@@ -30,7 +30,39 @@ def credits(string, numb):
 def requirements_meeting_dates(string, numb):
     results = re.match(field_patterns[2],string)
     if results:
+        numb += 1
         fields["meeting_dates"].append((results.group(0),results.group(1)))
+    else:
+        fields["recs"].append(string)
+    return numb
+
+
+def days(string, numb):
+    results = re.findall(field_patterns[3], string)
+    if results:
+        for result in results:
+            fields["days"].append(result)
+        numb += 1
+    return numb
+
+
+def times(string, numb):
+    results = re.match(field_patterns[4], string)
+    if results:
+        if numb == 6:
+            fields["start_time"].append(results.group(0))
+        elif numb == 7:
+            fields["end_time"].append(results.group(0))
+        numb += 1
+    return numb
+
+
+def location(string, numb):
+    fields["location"].append(string)
+    numb += 1
+    return numb
+
+
 f = open("sarahs_schedule.html")
 soup = BeautifulSoup(f)
 soup.prettify()
@@ -56,7 +88,9 @@ fields = {
 field_patterns = [
     re.compile('section *(.*)'),
     re.compile('(\d\.\d)'),
-    re.compile('^(\d\d/\d\d/\d\d)-(\d\d/\d\d/\d\d)')
+    re.compile('^(\d\d/\d\d/\d\d)-(\d\d/\d\d/\d\d)'),
+    re.compile('[MTWRF]'),
+    re.compile('\d\d:\d\d \s*')
 ]
 
 options = {
