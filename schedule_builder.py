@@ -16,10 +16,10 @@ class ScheduleParser():
             "credits": "",
             "recs": "",
             "meeting_dates": "",
-            "days": [],
-            "start_times": [],
-            "end_times": [],
-            "location": []
+            "days": list(),
+            "start_times": list(),
+            "end_times": list(),
+            "location": list()
         }
         self.field_patterns = [
             re.compile('section *(.*)'),
@@ -34,6 +34,12 @@ class ScheduleParser():
 
     def set_curr_string(self, string):
         self.curr_string = string.strip()
+
+    def add_to_field_list(self, field, value):
+        if (self.fields[field] == ""):
+            self.fields[field] = [value]
+        else:
+            self.fields.setdefault(field, list()).append(value)
 
     def parse(self):
         print("Step:", self.step_numb)
@@ -95,10 +101,11 @@ class ScheduleParser():
             self.finish_current_class()
         elif results:  # These are actually meeting Dates
             days = ""
+            self.step_numb += 1
             for result in results:
                 days += result
-            self.fields["days"].append(" ".join(days))
-            self.step_numb += 1
+            print("Days Value", self.fields["days"])
+            self.add_to_field_list("days", " ".join(days))
         elif section:  # This is the start of the next class
             self.finish_current_class()
             self.section_id()
@@ -109,23 +116,25 @@ class ScheduleParser():
         results = re.match(self.field_patterns[4], self.curr_string)
         if results:
             if self.step_numb == 5:
-                self.fields["start_times"].append(self.curr_string)
+                self.add_to_field_list("start_times", self.curr_string)
             elif self.step_numb == 6:
-                self.fields["end_times"].append(self.curr_string)
+                self.add_to_field_list("end_times", self.curr_string)
             self.step_numb += 1
 
     def location(self):
-        self.fields["location"].append(self.curr_string)
+        self.add_to_field_list("location", self.curr_string)
         self.step_numb = 4  # Return to days because there may be a second meeting time
 
     def finish_current_class(self):
         print(self.fields)
-        self.classes.append(self.fields)
+        self.classes.append(self.fields.copy())
         for field in self.fields:
             self.fields[field] = ""
         self.class_numb += 1
         self.step_numb = 0
         print(self.classes)
+
+        # TODO: Create a class for Course to better store all of the data
 
 
 if __name__ == "__main__":
@@ -142,21 +151,19 @@ if __name__ == "__main__":
 
     for span in soup.find_all("td"):
 
-        try:
-            span_text = ScheduleParser.strip_all_tags(span.get_text(strip=True))
-            parser.set_curr_string(span_text)
-            if "section" in span_text:
-                printing = True
-                print(span_text.strip())
-                parser.parse()
+        span_text = ScheduleParser.strip_all_tags(span.get_text(strip=True))
+        parser.set_curr_string(span_text)
+        if "section" in span_text:
+            printing = True
+            print(span_text.strip())
+            parser.parse()
 
-            elif "FOOTER" in span_text and printing:
-                printing = False
-            elif "%=" in span_text and printing:
-                continue
-            elif span_text != "" and printing:
-                print(span_text.strip())
-                parser.parse()
-        except:
+        elif "FOOTER" in span_text and printing:
+            printing = False
+        elif "%=" in span_text and printing:
             continue
+        elif span_text != "" and printing:
+            print(span_text.strip())
+            parser.parse()
+
     pprint.pprint(str(parser))
