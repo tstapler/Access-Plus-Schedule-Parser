@@ -2,8 +2,7 @@ from bs4 import BeautifulSoup
 import re
 import pprint
 
-# TODO: Account for classes with more than one meeting time
-# TODO: Change days, start times and end times to use arrays for multiple meeting dates
+
 class ScheduleParser():
     def __init__(self):
         self.step_numb = 0  # Current Step
