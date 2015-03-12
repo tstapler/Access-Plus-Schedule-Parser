@@ -2,12 +2,12 @@ from bs4 import BeautifulSoup
 import re
 import pprint
 
-
+# TODO: Account for classes with more than one meeting time
+# TODO: Change days, start times and end times to use arrays for multiple meeting dates
 class ScheduleParser():
-
     def __init__(self):
-        self.step_numb = 0 # Current Step
-        self.class_numb = 0 # Current Class
+        self.step_numb = 0  # Current Step
+        self.class_numb = 0  # Current Class
         self.curr_string = ""
         self.classes = []
         self.fields = {
@@ -16,16 +16,16 @@ class ScheduleParser():
             "credits": "",
             "recs": "",
             "meeting_dates": "",
-            "days": "",
-            "start_time": "",
-            "end_time": "",
-            "location": ""
+            "days": [],
+            "start_times": [],
+            "end_times": [],
+            "location": []
         }
         self.field_patterns = [
             re.compile('section *(.*)'),
             re.compile('(\d\.\d)'),
             re.compile('^(\d\d/\d\d/\d\d)-(\d\d/\d\d/\d\d)'),
-            re.compile('[MTWRF]'),
+            re.compile(r'\b[MTWRF]\b'),
             re.compile('\d\d:\d\d \s*')
         ]
 
@@ -33,12 +33,12 @@ class ScheduleParser():
         return str(self.classes)
 
     def set_curr_string(self, string):
-        self.curr_string = string
+        self.curr_string = string.strip()
 
     def parse(self):
-        #print("Step:", self.step_numb)
+        print("Step:", self.step_numb)
         if self.step_numb == 0:
-            self.section()
+            self.section_id()
         elif self.step_numb == 1:
             self.course_name()
         elif self.step_numb == 2:
@@ -56,76 +56,86 @@ class ScheduleParser():
 
     def strip_all_tags(html):
         if html is None:
-                return None
-        return ''.join( BeautifulSoup(html).findAll(text= True ) )
+            return None
+        return ''.join(BeautifulSoup(html).findAll(text=True))
 
-    def section(self):
-        #Return the Section identifier
-        results = re.match(self.field_patterns[0],self.curr_string)
+    def section_id(self):
+        # Return the Section identifier
+        results = re.match(self.field_patterns[0], self.curr_string)
         if results:
+            # TODO: Strip Special Caracters from Input
             self.fields["section"] = results.group(1)
             self.step_numb += 1
 
     def course_name(self):
+        # TODO: Strip Special Characters from input
         self.fields["course_name"] = self.curr_string
         self.step_numb += 1
 
     def credits(self):
-        results = re.match(self.field_patterns[1],self.curr_string)
-        if(results):
+        results = re.match(self.field_patterns[1], self.curr_string)
+        if (results):
             self.fields["credits"] = results.group(1)
-
         elif self.curr_string == "Credits":
             self.step_numb += 1
 
     def requirements_meeting_dates(self):
-        if self.curr_string == "ARR.":
-            self.step_numb = 0
-            return
-        results = re.match(self.field_patterns[2],self.curr_string)
+
+        results = re.match(self.field_patterns[2], self.curr_string)
         if results:
             self.step_numb += 1
-            self.fields["meeting_dates"] = (results.group(1),results.group(2))
+            self.fields["meeting_dates"] = (results.group(1), results.group(2))
         else:
             self.fields["recs"] = self.curr_string
 
     def days(self):
         results = re.findall(self.field_patterns[3], self.curr_string)
-        if results:
+        section = re.match(self.field_patterns[0], self.curr_string)
+        if self.curr_string == "ARR.":  # If this class has no meeting dates this is the end
+            self.finish_current_class()
+        elif results:  # These are actually meeting Dates
+            days = ""
             for result in results:
-                self.fields["days"] += result
-            self.fields["days"] = " ".join(self.fields["days"])
+                days += result
+            self.fields["days"].append(" ".join(days))
             self.step_numb += 1
+        elif section:  # This is the start of the next class
+            self.finish_current_class()
+            self.section_id()
+        else:
+            self.finish_current_class()
 
     def times(self):
         results = re.match(self.field_patterns[4], self.curr_string)
         if results:
             if self.step_numb == 5:
-                self.fields["start_time"] = self.curr_string
+                self.fields["start_times"].append(self.curr_string)
             elif self.step_numb == 6:
-                self.fields["end_time"] = self.curr_string
+                self.fields["end_times"].append(self.curr_string)
             self.step_numb += 1
 
     def location(self):
-        self.fields["location"] = self.curr_string
+        self.fields["location"].append(self.curr_string)
+        self.step_numb = 4  # Return to days because there may be a second meeting time
 
+    def finish_current_class(self):
+        print(self.fields)
         self.classes.append(self.fields)
-        print(self.classes)
         for field in self.fields:
             self.fields[field] = ""
-        self.step_numb = 0
         self.class_numb += 1
-
+        self.step_numb = 0
+        print(self.classes)
 
 
 if __name__ == "__main__":
 
     f = open("sarahs_schedule.html")
-    
+
     soup = BeautifulSoup(f)
     parser = ScheduleParser()
-    
-    soup.prettify()
+
+    # soup.prettify()
     soup.encode('utf-8', 'ignore')
 
     printing = False
@@ -144,7 +154,7 @@ if __name__ == "__main__":
                 printing = False
             elif "%=" in span_text and printing:
                 continue
-            elif span_text != "" and span_text != "\n" and printing:
+            elif span_text != "" and printing:
                 print(span_text.strip())
                 parser.parse()
         except:
