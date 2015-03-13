@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 import re
-import pprint
 
 
 class ScheduleParser():
@@ -31,8 +30,12 @@ class ScheduleParser():
     def __str__(self):
         return str(self.classes)
 
+    def reset_fields(self):
+        for field in self.fields:
+            self.fields[field] = ""
+
     def set_curr_string(self, string):
-        self.curr_string = string.strip()
+        self.curr_string = string.strip().replace('\xa0', '')
 
     def add_to_field_list(self, field, value):
         if (self.fields[field] == ""):
@@ -41,7 +44,6 @@ class ScheduleParser():
             self.fields.setdefault(field, list()).append(value)
 
     def parse(self):
-        print("Step:", self.step_numb)
         if self.step_numb == 0:
             self.section_id()
         elif self.step_numb == 1:
@@ -68,12 +70,10 @@ class ScheduleParser():
         # Return the Section identifier
         results = re.match(self.field_patterns[0], self.curr_string)
         if results:
-            # TODO: Strip Special Caracters from Input
             self.fields["section"] = results.group(1)
             self.step_numb += 1
 
     def course_name(self):
-        # TODO: Strip Special Characters from input
         self.fields["course_name"] = self.curr_string
         self.step_numb += 1
 
@@ -125,15 +125,41 @@ class ScheduleParser():
         self.step_numb = 4  # Return to days because there may be a second meeting time
 
     def finish_current_class(self):
-        print(self.fields)
-        self.classes.append(self.fields.copy())
-        for field in self.fields:
-            self.fields[field] = ""
+        current_course = self.make_new_course()
+        self.classes.append(current_course)
         self.class_numb += 1
         self.step_numb = 0
-        print(self.classes)
+        self.reset_fields()
 
-        # TODO: Create a class for Course to better store all of the data
+
+    def make_new_course(self):
+        return self.Course(self.fields["course_name"], self.fields["section"], self.fields["credits"],
+                      self.fields["recs"], self.fields["meeting_dates"], self.fields["days"], self.fields["start_times"],
+                      self.fields["end_times"], self.fields["location"])
+
+    class Course:
+
+        def __init__(self, name, section, class_credits, recs, meeting_dates, days, start_times, end_times, locations):
+            self.name = name
+            self.section = section
+            self.class_credits = class_credits
+            self.recs = recs
+            self.meeting_dates = meeting_dates
+            self.days = days
+            self.start_times = start_times
+            self.end_times = end_times
+            self.locations = locations
+
+        def __str__(self):
+            return self.name + ", section " + self.section + ", a " + self.class_credits + " credit class. \n" \
+                "This class meets in " + " and ".join(self.locations) + " on " + " ,".join(self.days)       \
+                + " starting at " + " or ".join(self.start_times) + " and ending at " + " or ".join(self.end_times) +"\n"
+
+        def string_days(self):
+            return
+
+        def string_start_times(self):
+            return
 
 
 if __name__ == "__main__":
@@ -164,5 +190,6 @@ if __name__ == "__main__":
         elif span_text != "" and printing:
             print(span_text.strip())
             parser.parse()
-
-    pprint.pprint(str(parser))
+    print("Current Course Schedule:")
+    for course in parser.classes:
+        print(course)
