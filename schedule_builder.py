@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import re
-
+from icalendar import Calendar, Event, vRecur
+import time
 
 class ScheduleParser():
     def __init__(self):
@@ -150,46 +151,72 @@ class ScheduleParser():
             self.end_times = end_times
             self.locations = locations
 
+            self.time_to_ics()
+
         def __str__(self):
             return self.name + ", section " + self.section + ", a " + self.class_credits + " credit class. \n" \
                 "This class meets in " + " and ".join(self.locations) + " on " + " ,".join(self.days)       \
-                + " starting at " + " or ".join(self.start_times) + " and ending at " + " or ".join(self.end_times) +"\n"
+                + " starting at " + " ".join(str(self.start_times)) + " and ending at " + " or ".join(self.end_times) +"\n" \
+                + " from " + self.meeting_dates[0] + " to " + self.meeting_dates[1]
 
-        def string_days(self):
-            return
+        def time_to_ics(self):
+                # Add a M to the end of each string to make A and P into AM or PM respectively
+                self.start_times = map(lambda string: string + "M", self.start_times)
+                # Add the Date to the time string
+                self.start_times = map(lambda time_str: time_str + " " + self.meeting_dates[0], self.start_times)
+                # Parse the string to pull out the relevant time data
+                self.start_times = list(map(lambda start_time: time.strptime(start_time, "%M:%S %p %x"), self.start_times))
 
-        def string_start_times(self):
-            return
 
+
+class IcsGenerator():
+
+    def __init__(self, target_parser):
+        self.target_parser = target_parser
+        self.ics_calendar = Calendar()
+        return
+
+    def process_course(self, course_to_process):
+        processed_course = Event()
+        processed_course["summary"] = course_to_process.name
+        processed_course["description"] = course_to_process.recs
+        processed_course["location"] = course_to_process.locations
+
+        return
+
+
+
+
+
+    def display(cal):
+        return cal.to_ical().replace('\r\n', '\n').strip()
 
 if __name__ == "__main__":
 
-    f = open("sarahs_schedule.html")
+    with open("sarahs_schedule.html") as schedule:
+        soup = BeautifulSoup(schedule)
+        parser = ScheduleParser()
+        soup.encode('utf-8', 'ignore')
 
-    soup = BeautifulSoup(f)
-    parser = ScheduleParser()
+        printing = False
 
-    # soup.prettify()
-    soup.encode('utf-8', 'ignore')
+        for span in soup.find_all("td"):
 
-    printing = False
+            span_text = ScheduleParser.strip_all_tags(span.get_text(strip=True))
+            parser.set_curr_string(span_text)
+            if "section" in span_text:
+                printing = True
+                print(span_text.strip())
+                parser.parse()
 
-    for span in soup.find_all("td"):
+            elif "FOOTER" in span_text and printing:
+                printing = False
+            elif "%=" in span_text and printing:
+                continue
+            elif span_text != "" and printing:
+                print(span_text.strip())
+                parser.parse()
 
-        span_text = ScheduleParser.strip_all_tags(span.get_text(strip=True))
-        parser.set_curr_string(span_text)
-        if "section" in span_text:
-            printing = True
-            print(span_text.strip())
-            parser.parse()
-
-        elif "FOOTER" in span_text and printing:
-            printing = False
-        elif "%=" in span_text and printing:
-            continue
-        elif span_text != "" and printing:
-            print(span_text.strip())
-            parser.parse()
-    print("Current Course Schedule:")
-    for course in parser.classes:
-        print(course)
+        print("Current Course Schedule:")
+        for course in parser.classes:
+            print(course)
