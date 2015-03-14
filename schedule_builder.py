@@ -38,7 +38,7 @@ class ScheduleParser():
     def set_curr_string(self, string):
         self.curr_string = string.strip().replace('\xa0', '')
 
-    def add_to_field_list(self, field, value):
+    def add_value_to_field_list(self, field, value):
         if (self.fields[field] == ""):
             self.fields[field] = [value]
         else:
@@ -49,47 +49,63 @@ class ScheduleParser():
         Move throughout the state machine.
         """
         if self.step_numb == 0:
-            self.section_id()
+            self.set_section_id()
         elif self.step_numb == 1:
-            self.course_name()
+            self.set_section_id()
         elif self.step_numb == 2:
-            self.credits()
+            self.set_numb_credits()
         elif self.step_numb == 3:
-            self.requirements_meeting_dates()
+            self.set_requirements_and_meeting_dates()
         elif self.step_numb == 4:
-            self.days()
+            self.set_meeting_days()
         elif self.step_numb == 5:
-            self.times()
+            self.set_meeting_times()
         elif self.step_numb == 6:
-            self.times()
+            self.set_meeting_times()
         elif self.step_numb == 7:
-            self.location()
-
+            self.set_location()
+            
+    @staticmethod
     def strip_all_tags(html):
         if html is None:
             return None
         return ''.join(BeautifulSoup(html).findAll(text=True))
 
-    def section_id(self):
+    def set_section_id(self):
+        """
+        Grab the section id out of the string
+        :return: return just the identifier
+        """
         # Return the Section identifier
         results = re.match(self.field_patterns[0], self.curr_string)
         if results:
             self.fields["section"] = results.group(1)
             self.step_numb += 1
 
-    def course_name(self):
+    def set_section_id(self):
+        """
+        Return the name of the course
+        :return:The name of the course is
+        """
         self.fields["course_name"] = self.curr_string
         self.step_numb += 1
 
-    def credits(self):
+    def set_numb_credits(self):
+        """
+        Grab the number of credits the course is
+        :return:
+        """
         results = re.match(self.field_patterns[1], self.curr_string)
         if (results):
             self.fields["credits"] = results.group(1)
         elif self.curr_string == "Credits":
             self.step_numb += 1
 
-    def requirements_meeting_dates(self):
-
+    def set_requirements_and_meeting_dates(self):
+        """
+        It's difficult to tell when the class details end, keep parsing until you match the meeting dates which
+        are the next thing on the list.
+        """
         results = re.match(self.field_patterns[2], self.curr_string)
         if results:
             self.step_numb += 1
@@ -97,7 +113,7 @@ class ScheduleParser():
         else:
             self.fields["recs"] = self.curr_string
 
-    def days(self):
+    def set_meeting_days(self):
         """
         Check for the four possible cases:
         1. If the course is arranged it has no meeting times so finish parsing this course and reset
@@ -116,30 +132,30 @@ class ScheduleParser():
             for result in results:
                 days += result
             print("Days Value", self.fields["days"])
-            self.add_to_field_list("days", " ".join(days))
+            self.add_value_to_field_list("days", " ".join(days))
         elif section:  # This is the start of the next class
             self.finish_current_course()
-            self.section_id()
+            self.set_section_id()
         else:
             self.finish_current_course()
 
-    def times(self):
+    def set_meeting_times(self):
         """
         There will be two times, start and end times for each course meeting
         """
         results = re.match(self.field_patterns[4], self.curr_string)
         if results:
             if self.step_numb == 5:
-                self.add_to_field_list("start_times", self.curr_string)
+                self.add_value_to_field_list("start_times", self.curr_string)
             elif self.step_numb == 6:
-                self.add_to_field_list("end_times", self.curr_string)
+                self.add_value_to_field_list("end_times", self.curr_string)
             self.step_numb += 1
 
-    def location(self):
+    def set_location(self):
         """
         Location Is Easy, Just add append the string and check for another meeting day
         """
-        self.add_to_field_list("location", self.curr_string)
+        self.add_value_to_field_list("location", self.curr_string)
         self.step_numb = 4  # Return to days because there may be a second meeting time
 
     def finish_current_course(self):
@@ -227,7 +243,7 @@ class IcsGenerator():
         self.ics_calendar = Calendar()
 
     @staticmethod
-    def create_course(self, course_to_create):
+    def create_course(course_to_create):
         """
         Create a new iCalendar Event to be created
         :param course_to_create: the ''Course()'' object that needs to be changed into ics format
@@ -237,8 +253,15 @@ class IcsGenerator():
         created_course["summary"] = course_to_create.name
         created_course["description"] = course_to_create.recs
         created_course["location"] = course_to_create.locations
-
+        created_course.add('dtstart',course_to_create.start_in_datetime)
+        #TODO: Add recurring events (The biggest needed thing)
         return created_course
+
+    # TODO: Create Calendar method
+
+    # TODO: Add courses to calendar method
+
+    # TODO: Export to file method
 
 if __name__ == "__main__":
 
@@ -249,8 +272,10 @@ if __name__ == "__main__":
 
         printing = False
 
+
         for span in soup.find_all("td"):
 
+            #TODO: Pull this functionality into the ScheduleParser class
             span_text = ScheduleParser.strip_all_tags(span.get_text(strip=True))
             parser.set_curr_string(span_text)
             if "section" in span_text:
