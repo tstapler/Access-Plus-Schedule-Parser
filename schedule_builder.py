@@ -1,7 +1,10 @@
 from bs4 import BeautifulSoup
 import re
-from icalendar import Calendar, Event, vRecur,vText
+from icalendar import Calendar, Event, vRecur, vText
 import time
+import icalendar
+
+# TODO: Support python 3.4 because it prints out MORE data than python 3.3 or 2.7.....
 
 class ScheduleParser():
     def __init__(self):
@@ -49,6 +52,7 @@ class ScheduleParser():
         """
         Move throughout the state machine.
         """
+        print("Step:" + str(self.step_numb))
         if self.step_numb == 0:
             self.set_section_id()
         elif self.step_numb == 1:
@@ -194,13 +198,11 @@ class Course:
         self.section = section
         self.class_credits = class_credits
         self.recs = recs
+        self.meeting_times = []
         for numb, meeting_type in enumerate(meeting_types):
                 self.number_of_meetings = numb
-                if meeting_type == "STANDARD":
-                    self.meeting_times = [self.MeetingTime(meeting_type, meeting_dates[], days[numb], start_times[numb],
+                self.meeting_times = [self.MeetingTime(meeting_type, meeting_dates, days[numb], start_times[numb],
                                                        end_times[numb], locations[numb])]
-                else:
-
 
 
     # def __str__(self):
@@ -213,7 +215,6 @@ class Course:
     #         "This class meets in " + " and ".join(self.locations) + " on " + " ,".join(self.days)       \
     #         + " starting at " + " ".join(str(self.start_times)) + " and ending at " + " or ".join(self.end_times) +"\n" \
     #         + " from " + self.meeting_dates[0] + " to " + self.meeting_dates[1]
-
 
     class MeetingTime():
 
@@ -290,7 +291,7 @@ class IcsGenerator():
         :param target_parser: The parser the user intends to extract ics data from.
         """
         self.target_parser = target_parser
-        self.ics_calendar = Calendar()
+        self.ics_calendar = icalendar.Calendar()
         self.add_courses_to_calendar()
 
     def add_courses_to_calendar(self):
@@ -311,7 +312,7 @@ class IcsGenerator():
         """
         # TODO: Handle multiple meeting events
         # TODO: Check the encoding of the parameters in rrule apparently parameter encoding is not supported
-        event = Event()
+        event = icalendar.Event()
         event["summary"] = name
         event["description"] = recs
         event["location"] = meeting.locations
@@ -352,7 +353,7 @@ if __name__ == "__main__":
 
             elif "FOOTER" in span_text and printing:
                 printing = False
-            elif "%=" in span_text and printing:
+            elif "%=" in span_text or "Last" in span_text or "Textbook" in span_text or "Instructor" in span_text and printing:
                 continue
             elif span_text != "" and printing:
                 print(span_text.strip())
