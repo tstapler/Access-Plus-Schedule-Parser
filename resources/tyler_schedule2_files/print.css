@@ -1,0 +1,31 @@
+textarea {
+  color:#000;
+  overflow:visible;
+/*  font-size:12px; */
+}
+
+input {
+  color:#000;
+}
+
+.noprint {display:none;}
+
+.printonly {display:inline;}
+
+.menu {display:none;}
+.tabs {display:none;}
+.appbar {display:none;}
+
+/* left border */
+.lbf90 {border-left:none;}
+.lbc00 {border-left:none;}
+.lb063 {border-left:none;}
+.lb036 {border-left:none;}
+
+.xxs {font-size:6pt;}
+
+#printheader {display:inline;}
+#appDiv {overflow:visible;max-height:none;}
+
+/* Inserts page break when printing the page */
+.pageBreak {page-break-after:always;}
