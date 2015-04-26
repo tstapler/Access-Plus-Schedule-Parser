@@ -3,6 +3,10 @@ import re
 from icalendar import Calendar, Event, vRecur
 import time
 
+
+#TODO: Separate the set_requirements_and_meeting_dates method into its component parts
+#TODO: Create notes method
+#TODO: Create prerequisites method
 class ScheduleParser():
     def __init__(self):
         self.step_numb = 0  # Current Step
@@ -44,27 +48,56 @@ class ScheduleParser():
         else:
             self.fields.setdefault(field, list()).append(value)
 
+    #TODO:Recalculate the correct number of steps/fields needed
     def parse(self):
         """
         Move throughout the state machine.
         """
+        print(self.step_numb)
         if self.step_numb == 0:
             self.set_section_id()
+
         elif self.step_numb == 1:
             self.set_course_name()
+
         elif self.step_numb == 2:
             self.set_numb_credits()
+
         elif self.step_numb == 3:
-            self.set_requirements_and_meeting_dates()
+            #TODO: Create method
+            self.set_drop_date()
+
         elif self.step_numb == 4:
-            self.set_meeting_days()
+            #TODO: Create method
+            self.set_reference_numb()
+
         elif self.step_numb == 5:
-            self.set_meeting_times()
+            #TODO: Create method
+            self.set_notes()
+
         elif self.step_numb == 6:
-            self.set_meeting_times()
+            #TODO: Create method
+            self.set_requirements()
+
         elif self.step_numb == 7:
+            #TODO: Create method
+            self.set_meeting_dates()
+
+        elif self.step_numb == 8:
+            self.set_meeting_days()
+
+        elif self.step_numb == 9:
+            self.set_meeting_times()
+
+        elif self.step_numb == 10:
+            self.set_meeting_times()
+
+        elif self.step_numb == 11:
             self.set_location()
-            
+
+        elif self.step_numb == 12:
+            self.set_instructor()
+
     @staticmethod
     def strip_all_tags(html):
         if html is None:
@@ -101,6 +134,17 @@ class ScheduleParser():
         elif self.curr_string == "Credits":
             self.step_numb += 1
 
+    def set_drop_date(self):
+        results = re.match(self.fiels_patterns[2], self.curr_string)
+        self.fields["drop_date"]
+        self.step_numb +=1
+
+    def set_reference_num(self):
+        return
+
+    def set_notes(self):
+        return
+
     def set_requirements_and_meeting_dates(self):
         """
         It's difficult to tell when the class details end, keep parsing until you match the meeting dates which
@@ -117,9 +161,9 @@ class ScheduleParser():
         """
         Check for the four possible cases:
         1. If the course is arranged it has no meeting times so finish parsing this course and reset
-        
+
         2. If the course is normal continue
-        
+
         3. This is the second or third time here and we have reached the start of the next course
         """
         results = re.findall(self.field_patterns[3], self.curr_string)
@@ -157,6 +201,9 @@ class ScheduleParser():
         """
         self.add_value_to_field_list("location", self.curr_string)
         self.step_numb = 4  # Return to days because there may be a second meeting time
+
+    def set_instructor(self):
+        return
 
     def finish_current_course(self):
         """
