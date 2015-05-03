@@ -1,9 +1,11 @@
 from bs4 import BeautifulSoup
 import re
-from icalendar import Calendar, Event, vRecur, vWeekday
+from icalendar import Calendar, Event, vRecur, vWeekday, vDatetime, vText
 import time
 from time import mktime
 from datetime import datetime
+import pytz
+from tzlocal import get_localzone
 
 #TODO: Handle Command Line Arguments for the html file
 class ScheduleParser():
@@ -304,7 +306,6 @@ class MeetingTime():
         self.days = days
         self.meeting_dates = meeting_dates
         self.start_in_datetime, self.end_in_datetime,self.repeat_until = self.time_struct_to_datetime()
-        print(self.start_in_datetime, self.end_in_datetime, self.repeat_until)
         self.days_to_ics()
 
     def days_to_ics(self):
@@ -324,34 +325,37 @@ class MeetingTime():
         Convert all of the parsed times into datetimes so they can be easily added
         :return: a start time and end time datetime objects
         """
+        tz = get_localzone()
         ics_start = self.build_datetime(self.start_time, self.meeting_dates[0])
         ics_end = self.build_datetime(self.end_time, self.meeting_dates[0])
         ics_repeat_until = self.build_datetime(self.end_time,self.meeting_dates[1])
-        return datetime.fromtimestamp(mktime(ics_start)), datetime.fromtimestamp(mktime(ics_end)), datetime.fromtimestamp(mktime(ics_repeat_until))
+        ics_start = datetime.fromtimestamp(mktime(ics_start))
+        ics_end = datetime.fromtimestamp(mktime(ics_end))
+        ics_repeat_until = datetime.fromtimestamp(mktime(ics_repeat_until))
+        return ics_start.replace(tzinfo=tz), ics_end.replace(tzinfo=tz), ics_repeat_until.replace(tzinfo=tz)
 
-    def build_datetime(self, times, date):
+    def build_datetime(self, in_time, in_date):
         """
         Make a datetime from the various strings that we were able to parse
-        :param times: a meeting time string(s) for converting
-        :param date: the date to append to the time
+        :param in_time: a meeting time string(s) for converting
+        :param in_date: the date to append to the time
         :return: return the completed datetime object
         """
         # Append an M to the end of each string to make A and P into AM or PM respectively
-        ics_start =  self.start_time + "M"
+        ics_start =  in_time + "M"
         # Append the Date to the time string
-        ics_start = ics_start + " " + self.meeting_dates[0]
+        ics_start = ics_start + " " + in_date
         # Parse the string to pull out the relevant time data into an object
-        return time.strptime(ics_start, "%M:%S %p %x")
+        return time.strptime(ics_start, "%I:%M %p %x")
 
 
-    @staticmethod
-    def datetime_to_string(datetime):
+    def datetime_to_string(self, datetime):
         """
         Method which returns a time in string form properly formatted for .ics
         :param datetime: a time object
         :return: properly formatted string
         """
-        return time.strftime("%Y%m%dT%H%M%S", datetime)
+        return datetime.isoformat()
 
     def __str__(self):
         return "This meeting is taught by " + self.instructor + " in " + self.location + " from " + self.start_time \
@@ -370,6 +374,8 @@ class IcsGenerator():
         """
         self.target_parser = target_parser
         self.ics_calendar = Calendar()
+        self.ics_calendar.add('prodid','-//My calendar//mxm.dk//')
+        self.ics_calendar.add('version','2.0')
         self.add_courses_to_calendar()
 
     @staticmethod
@@ -379,20 +385,18 @@ class IcsGenerator():
         :param course: the ''Course()'' object that needs to be changed into ics format
         :return: an Event object initialized with the course's data
         """
-        # TODO: Handle multiple meeting events
-        # TODO: Check the encoding of the parameters in rrule apparently parameter encoding is not supported
         event = Event()
-        event['summary'] = course.name
-        event['description'] = course.recs
-        event['location'] = course.locations
+        event['summary'] = vText(course.number + ": " + course.name)
+        #event['description'] = vText(course.recs) <-- Currently Giving strange output
+        event['location'] = vText(meeting.location)
+        #TODO: Find the timezone based on the computer and add it to the datetimeobject
         event.add('dtstart', meeting.start_in_datetime)
         event.add('dtend', meeting.end_in_datetime)
-        # TODO: Create correct by day format
         byday_list = list()
         for day in meeting.days.split():
             byday_list.append(vWeekday(day))
-        # TODO: Validation for the edge cases & Remove hardcoded list values
         event.add('rrule',{'freq': 'WEEKLY', 'byday':byday_list, 'until': meeting.repeat_until})
+
         return event
 
     def add_courses_to_calendar(self):
@@ -437,7 +441,7 @@ if __name__ == "__main__":
                     parser.parse()
                     print(span_text.strip())
 
-        print("\nCurrent Course Schedule:\n")
+        print("\nCourse Schedule:\n")
         for course in parser.courses:
             print(str(course) + "\n")
             print("There are " + str(len(course.meeting_times)) + " meeting times.\n" )
