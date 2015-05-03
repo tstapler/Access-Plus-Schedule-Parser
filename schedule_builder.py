@@ -421,17 +421,18 @@ if __name__ == "__main__":
 
         printing = False
         count = 0
-
+        details = 0
         #TODO: Pull this functionality into the ScheduleParser class
         for span in soup.find_all("td"):
 
             span_text = ScheduleParser.strip_all_tags(span.get_text(strip=True))
             parser.set_curr_string(span_text)
+            if "Schedule Details" in span_text:
+                details += 1
             if "View Complete Textbook List" in span_text:
-                if count == 1:
+                if count >= 1 and details == 5:
                     printing = True
                 count += 1
-
             elif "FOOTER" in span_text and printing:
                 printing = False
             elif "%=" in span_text and printing:
