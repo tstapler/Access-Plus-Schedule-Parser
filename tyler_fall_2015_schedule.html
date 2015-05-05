@@ -1,0 +1,2545 @@
+
+
+ 
+  
+
+  
+
+
+
+
+
+
+   
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Class Schedule</title>
+<meta name="program-id"    content="R480/R4830.jsp">
+<meta name="author"        content="*Full name of programmer*">
+<meta name="date-written"  content="*Date program began*">
+<meta name="host-programs" content="*Five char COBOL program id(s)*">
+<meta name="keywords"      content="*Keywords relevent to the document*">
+<!--    * *    P R O G R A M     F U N C T I O N    * *    -->
+<meta name="function"      content=" * Brief statement identifying objectives * ">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<meta name="GENERATOR_VERSION" content="Wizard Version 2.0.26">
+<meta name="GENERATOR" content="ADP JSP Generator. Copyright ) 2000 , Iowa State University. All rights reserved.">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Pragma" content="no-cache">
+<script type="text/javascript" language="JavaScript1.2">
+ 
+ 
+<!--
+function change(name, link) {
+    if ((obj=document.getElementById(name))!=null)
+    {
+        if (obj.style){ obj = obj.style; }
+ 
+        if (obj.display != 'none')
+        {
+           obj.display = 'none';
+           obj.visibility = 'hidden';
+ 
+           if(link == 'LinkChange')
+           {
+               document.getElementById(link).innerHTML = "View Schedule Details";
+           }
+           else
+           {
+               document.getElementById(link).innerHTML = "View Schedule Time Grid";
+           }
+        }
+        else
+        {
+           obj.display = 'block';
+           obj.visibility = 'visible';
+           if(link == 'LinkChange')
+           {
+               document.getElementById(link).innerHTML = "Remove Schedule Details";  
+           }
+           else
+           {
+               document.getElementById(link).innerHTML = "Remove Schedule Time Grid";
+               if ((detail=document.getElementById('long'))!=null)
+               {
+                    if (detail.style)
+                    {
+                       detail = detail.style;
+                    }
+               }
+               detail.display = 'none';
+               detail.visibility = 'hidden';
+               document.getElementById('LinkChange').innerHTML = "View Schedule Details";
+           }
+        }
+    }
+}
+-->
+</script>
+<script type="text/javascript" language="JavaScript1.2" SRC="https://accessplus.iastate.edu/accessplus/js/accessplus.js"></script>
+<script type="text/javascript" language="JavaScript1.2" SRC="/R500/R500.js"></script>
+<link rel="stylesheet" href="https://accessplus.iastate.edu/accessplus/css/accessplus.css" type="text/css">
+<!--    * *    D I S C L A I M E R    * *
+Usage - All rights reserved. The recipient may use for non-profit purposes only and may distribute only with written approval from Iowa State University - ADP Center.
+Disclaimer - Although tested, no warranty, expressed or implied, is given to this program by Iowa State University
+--> 
+<style type="text/css"> 
+   tr.warning {background-color:#eeaaaa}
+</style>
+</head>
+<body onload="displayalert('00', '');" style="background:url(/images/env.gif);">
+
+
+  <link rel="stylesheet" href="https://accessplus.iastate.edu/accessplus/css/accessplus.css" type="text/css">
+  <link rel="stylesheet" href="https://accessplus.iastate.edu/accessplus/css/print.css" type="text/css" media="print">
+  <script type="text/javascript" language="JavaScript1.2" SRC="https://accessplus.iastate.edu/accessplus/js/accessplus.js"></script>
+  <script type="text/javascript" language="JavaScript1.2" SRC="https://accessplus.iastate.edu/accessplus/js/overlib350.js"></script>
+  <div id="overdiv" style="position:absolute; visibility:hide;z-index:1;"></div>
+<TABLE border="0" cellpadding="0" cellspacing="0" width="100%" onclick="clearNd();">
+ <TR valign="top">
+      <td width="160" class="menu">
+  <!-- beg header -->
+  <table width="160" border="0" cellspacing="0" cellpadding="0" summary="AccessPlus menu options for student tab">
+    <tr valign="top">
+      <td align="left" nowrap><a href="/servlet/adp.A_Plus?A_Plus_action=/home.jsp"><img src="https://accessplus.iastate.edu/accessplus/img/head.accessplus.gif" width="160" height="30" border="0" alt="AccessPlus"></img></a><br><img src="https://accessplus.iastate.edu/accessplus/img/head.options.spacer.gif" width="6" height="18" border="0" alt="" ></img><a href="javascript:openHelpWindow('/frontdoor/aboutInside.jsp','400','600')"><img src="https://accessplus.iastate.edu/accessplus/img/head.options.about.gif" width="36" height="18" border="0" alt="About AccessPlus" ></img></a><img src="https://accessplus.iastate.edu/accessplus/img/head.options.bar.gif" width="16" height="18" border="0" alt="" ></img><a href="/servlet/adp.A_Plus?A_Plus_action=/frontdoor/logout.jsp"><img src="https://accessplus.iastate.edu/accessplus/img/head.options.logout.gif" width="40" height="18" border="0" alt="Logout of AccessPlus" ></img></a><img src="https://accessplus.iastate.edu/accessplus/img/head.options.spacer.gif" width="2" height="18" border="0" alt="" ></img><img src="https://accessplus.iastate.edu/accessplus/img/head.options.fade.gif" width="60" height="18" border="0" alt="" ></img></td>
+    </tr>
+    <tr valign="top">
+      <td align="left" style="height:320;background:#ffffff url(https://accessplus.iastate.edu/accessplus/img/bg.student.01.gif) no-repeat;">      <img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="160" height="12" border="0" alt="" ></img><br><!-- beg menu -->
+   <!-- Build Menu -->
+
+<img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="12" height="18" border="0" alt=""></img><a href="/servlet/adp.A_Plus?A_Plus_action=/UR02/UR02.jsp&SYSTEM=UR02&SUBSYS=002&SYSCODE=UR02&MenuOption=0" class="menured" onmouseout="nd()" onmouseover="overlib('View your account information; set up custom options such as payroll deduction, direct deposit, and aid authorization; and pay your U-bill online.',DELAY,1000,CAPTION,'Account/U-Bill')"><b>Account/U-Bill</b></a><br>
+<img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="12" height="18" border="0" alt=""></img><a href="/servlet/adp.A_Plus?A_Plus_action=/R480/R480.jsp&SYSTEM=R480&SUBSYS=005&SYSCODE=AC&MenuOption=1" class="menured" onmouseout="nd()" onmouseover="overlib('',DELAY,1000,CAPTION,'Address Change')"><b>Address Change</b></a><br>
+<img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="12" height="18" border="0" alt=""></img><a href="/servlet/adp.A_Plus?A_Plus_action=/AM16/AM16.jsp&SYSTEM=AM16&SUBSYS=001&SYSCODE=OA&MenuOption=2" class="menured" onmouseout="nd()" onmouseover="overlib('',DELAY,1000,CAPTION,'Admissions')"><b>Admissions</b></a><br>
+<img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="12" height="18" border="0" alt=""></img><a href="/servlet/adp.A_Plus?A_Plus_action=/RH05/RH05.jsp&SYSTEM=RH05&SUBSYS=021&SYSCODE=DINE&MenuOption=3" class="menured" onmouseout="nd()" onmouseover="overlib('',DELAY,1000,CAPTION,'Campus Dining')"><b>Campus Dining</b></a><br>
+<img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="12" height="18" border="0" alt=""></img><a href="/servlet/adp.A_Plus?A_Plus_action=/RH05/RH05.jsp&SYSTEM=RH05&SUBSYS=001&SYSCODE=RH05&MenuOption=4" class="menured" onmouseout="nd()" onmouseover="overlib('',DELAY,1000,CAPTION,'Campus Housing')"><b>Campus Housing</b></a><br>
+<img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="12" height="18" border="0" alt=""></img><a href="/servlet/adp.A_Plus?A_Plus_action=/AP05/AP05.jsp&SYSTEM=AP05&SUBSYS=013&SYSCODE=SA1&MenuOption=5" class="menured" onmouseout="nd()" onmouseover="overlib('',DELAY,1000,CAPTION,'Campus Org Events')"><b>Campus Org Events</b></a><br>
+<img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="12" height="18" border="0" alt=""></img><a href="/servlet/adp.A_Plus?A_Plus_action=/R209/R209.jsp&SYSTEM=R209&SUBSYS=001&SYSCODE=R209&MenuOption=6" class="menured" onmouseout="nd()" onmouseover="overlib('',DELAY,1000,CAPTION,'Class Registration')"><b>Class Registration</b></a><br>
+<img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="12" height="18" border="0" alt=""></img><a href="/servlet/adp.A_Plus?A_Plus_action=/R480/R480.jsp&SYSTEM=R480&SUBSYS=006&SYSCODE=CS&MenuOption=7" class="red" onmouseout="nd()" onmouseover="overlib('',DELAY,1000,CAPTION,'Class Schedule')"><span class="xs"><b>Class Schedule</b></span></a><br>
+<img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="12" height="18" border="0" alt=""></img><a href="/servlet/adp.A_Plus?A_Plus_action=/R480/R480.jsp&SYSTEM=R480&SUBSYS=003&SYSCODE=SIZ&MenuOption=8" class="menured" onmouseout="nd()" onmouseover="overlib('',DELAY,1000,CAPTION,'Current Stdnt Info')"><b>Current Stdnt Info</b></a><br>
+<img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="12" height="18" border="0" alt=""></img><a href="/servlet/adp.A_Plus?A_Plus_action=/UI04/UI04.jsp&SYSTEM=UI04&SUBSYS=002&SYSCODE=UI24&MenuOption=9" class="menured" onmouseout="nd()" onmouseover="overlib('Check your CyCash account balance and add value via UBill charge or bank account transfer',DELAY,1000,CAPTION,'CyCash')"><b>CyCash</b></a><br>
+<img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="12" height="18" border="0" alt=""></img><a href="/servlet/adp.A_Plus?A_Plus_action=/R480/R480.jsp&SYSTEM=R480&SUBSYS=010&SYSCODE=DRWB&MenuOption=10" class="menured" onmouseout="nd()" onmouseover="overlib('',DELAY,1000,CAPTION,'Degree Audit')"><b>Degree Audit</b></a><br>
+<img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="12" height="18" border="0" alt=""></img><a href="/servlet/adp.A_Plus?A_Plus_action=/UR02/UR02.jsp&SYSTEM=UR02&SUBSYS=006&SYSCODE=UR01&MenuOption=11" class="menured" onmouseout="nd()" onmouseover="overlib('',DELAY,1000,CAPTION,'Direct Deposit')"><b>Direct Deposit</b></a><br>
+<img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="12" height="18" border="0" alt=""></img><a href="/servlet/adp.A_Plus?A_Plus_action=/UV02/UV02.jsp&SYSTEM=UV02&SUBSYS=007&SYSCODE=EC7&MenuOption=12" class="menured" onmouseout="nd()" onmouseover="overlib('',DELAY,1000,CAPTION,'Emergency Contact')"><b>Emergency Contact</b></a><br>
+<img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="12" height="18" border="0" alt=""></img><a href="/servlet/adp.A_Plus?A_Plus_action=/R501/R501.jsp&SYSTEM=R501&SUBSYS=001&SYSCODE=STCH&MenuOption=13" class="menured" onmouseout="nd()" onmouseover="overlib('',DELAY,1000,CAPTION,'Enrollment Cert')"><b>Enrollment Cert</b></a><br>
+<img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="12" height="18" border="0" alt=""></img><a href="/servlet/adp.A_Plus?A_Plus_action=/FA10/FA10.jsp&SYSTEM=FA10&SUBSYS=001&SYSCODE=FA10&MenuOption=14" class="menured" onmouseout="nd()" onmouseover="overlib('',DELAY,1000,CAPTION,'Financial Aid')"><b>Financial Aid</b></a><br>
+<img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="12" height="18" border="0" alt=""></img><a href="/servlet/adp.A_Plus?A_Plus_action=/UR05/UR05.jsp&SYSTEM=UR05&SUBSYS=001&SYSCODE=GC01&MenuOption=15" class="menured" onmouseout="nd()" onmouseover="overlib('',DELAY,1000,CAPTION,'Gift Certificate')"><b>Gift Certificate</b></a><br>
+<img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="12" height="18" border="0" alt=""></img><a href="/servlet/adp.A_Plus?A_Plus_action=/R480/R480.jsp&SYSTEM=R480&SUBSYS=001&SYSCODE=SD&MenuOption=16" class="menured" onmouseout="nd()" onmouseover="overlib('View student demographic information.',DELAY,1000,CAPTION,'Grad Stdnt Status')"><b>Grad Stdnt Status</b></a><br>
+<img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="12" height="18" border="0" alt=""></img><a href="/servlet/adp.A_Plus?A_Plus_action=/R490/R490.jsp&SYSTEM=R490&SUBSYS=001&SYSCODE=GT&MenuOption=17" class="menured" onmouseout="nd()" onmouseover="overlib('View your grades for individual semesters or view your complete unofficial transcript.',DELAY,1000,CAPTION,'Grades&Transcripts')"><b>Grades&Transcripts</b></a><br>
+<img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="12" height="18" border="0" alt=""></img><a href="/servlet/adp.A_Plus?A_Plus_action=/R403/R403.jsp&SYSTEM=R403&SUBSYS=002&SYSCODE=GA&MenuOption=18" class="menured" onmouseout="nd()" onmouseover="overlib('',DELAY,1000,CAPTION,'Graduation')"><b>Graduation</b></a><br>
+<img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="12" height="18" border="0" alt=""></img><a href="/servlet/adp.A_Plus?A_Plus_action=/HR02/HR02.jsp&SYSTEM=HR02&SUBSYS=002&SYSCODE=HI&MenuOption=19" class="menured" onmouseout="nd()" onmouseover="overlib('',DELAY,1000,CAPTION,'Health Insurance')"><b>Health Insurance</b></a><br>
+<img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="12" height="18" border="0" alt=""></img><a href="/servlet/adp.A_Plus?A_Plus_action=/UV02/UV02.jsp&SYSTEM=UV02&SUBSYS=009&SYSCODE=EA9&MenuOption=20" class="menured" onmouseout="nd()" onmouseover="overlib('',DELAY,1000,CAPTION,'ISU Alert')"><b>ISU Alert</b></a><br>
+<img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="12" height="18" border="0" alt=""></img><a href="/servlet/adp.A_Plus?A_Plus_action=/AK01/AK01.jsp&SYSTEM=AK01&SUBSYS=001&SYSCODE=AK01&MenuOption=21" class="menured" onmouseout="nd()" onmouseover="overlib('',DELAY,1000,CAPTION,'Math Asmnt (ALEKS)')"><b>Math Asmnt (ALEKS)</b></a><br>
+<img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="12" height="18" border="0" alt=""></img><a href="/servlet/adp.A_Plus?A_Plus_action=/DP50/DP50.jsp&SYSTEM=DP50&SUBSYS=002&SYSCODE=DP50&MenuOption=22" class="menured" onmouseout="nd()" onmouseover="overlib('',DELAY,1000,CAPTION,'Parking Division')"><b>Parking Division</b></a><br>
+<img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="12" height="18" border="0" alt=""></img><a href="/servlet/adp.A_Plus?A_Plus_action=/RH05/RH05.jsp&SYSTEM=RH05&SUBSYS=003&SYSCODE=RH00&MenuOption=23" class="menured" onmouseout="nd()" onmouseover="overlib('',DELAY,1000,CAPTION,'Residence Contract')"><b>Residence Contract</b></a><br>
+<img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="12" height="18" border="0" alt=""></img><a href="/servlet/adp.A_Plus?A_Plus_action=/FA11/FA11.jsp&SYSTEM=FA11&SUBSYS=003&SYSCODE=FA11&MenuOption=24" class="menured" onmouseout="nd()" onmouseover="overlib('',DELAY,1000,CAPTION,'Student Job Board')"><b>Student Job Board</b></a><br>
+<img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="12" height="18" border="0" alt=""></img><a href="/servlet/adp.A_Plus?A_Plus_action=/UR02/UR02.jsp&SYSTEM=UR02&SUBSYS=009&SYSCODE=UR09&MenuOption=25" class="menured" onmouseout="nd()" onmouseover="overlib('',DELAY,1000,CAPTION,'Tax Info (1098)')"><b>Tax Info (1098)</b></a><br>
+<img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="12" height="18" border="0" alt=""></img><a href="/servlet/adp.A_Plus?A_Plus_action=/TC04/TC04.jsp&SYSTEM=TC04&SUBSYS=001&SYSCODE=TB&MenuOption=26" class="menured" onmouseout="nd()" onmouseover="overlib('View your Telecommunications Authorization Code or browse your bills.',DELAY,1000,CAPTION,'Telephone Services')"><b>Telephone Services</b></a><br>
+<img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="12" height="18" border="0" alt=""></img><a href="/AP04/AP403.jsp?SYSTEM=AP04&SUBSYS=001&SYSCODE=APP&MenuOption=27" class="menured" onmouseout="nd()" onmouseover="overlib('Third Party Access allows you to create and manage custom accounts to allow family and friends to view and/or update your information.',DELAY,1000,CAPTION,'Third Party Access')"><b>Third Party Access</b></a><br>
+<img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="12" height="18" border="0" alt=""></img><a href="/servlet/adp.A_Plus?A_Plus_action=/AP05/AP05.jsp&SYSTEM=AP05&SUBSYS=003&SYSCODE=SA&MenuOption=28" class="menured" onmouseout="nd()" onmouseover="overlib('',DELAY,1000,CAPTION,'Votes and Surveys')"><b>Votes and Surveys</b></a><br>
+<img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="12" height="18" border="0" alt=""></img><a href="/servlet/adp.A_Plus?A_Plus_action=/HR01/HR01.jsp&SYSTEM=HR01&SUBSYS=008&SYSCODE=HRT&MenuOption=29" class="menured" onmouseout="nd()" onmouseover="overlib('',DELAY,1000,CAPTION,'Web Based Training')"><b>Web Based Training</b></a><br>
+<!-- end menu -->
+ </td>
+    </tr>
+  </table>
+  <!-- end header -->
+  </td>
+  <td width="100%" align="left">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" summary="Tab selection and application display area">
+  <tr valign="top" class="tabs">
+  <td align="right" nowrap style="background:#ffffff url(https://accessplus.iastate.edu/accessplus/img/head.bg.gif);"><img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="6" height="6" border="0" alt=""><br><a href="http://www.iastate.edu"><img src="https://accessplus.iastate.edu/accessplus/img/head.isu.gif" width="160" height="12" border="0" alt="Iowa State University"></a><br><img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="6" height="6" border="0" alt=""><br>
+<img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="6" height="6" border="0" alt=""></img><img src="https://accessplus.iastate.edu/accessplus/img/tabs.bridge.none.off.gif" width="20" height="24" border="0" alt=""></img><a href="/servlet/adp.A_Plus?A_Plus_action=/home.jsp&MenuOption="><img src="https://accessplus.iastate.edu/accessplus/img/tabs.aplushome.off.gif" width="100" height="24" border="0" alt="Home Menu"></img></a><img src="https://accessplus.iastate.edu/accessplus/img/tabs.bridge.off.on.gif" width="20" height="24" border="0" alt=""></img><a href="/servlet/adp.A_Plus?A_Plus_action=/student.jsp&MenuOption="><img src="https://accessplus.iastate.edu/accessplus/img/tabs.student.on.gif" width="100" height="24" border="0" alt="Student Menu"></img></a><img src="https://accessplus.iastate.edu/accessplus/img/tabs.bridge.on.edge.gif" width="10" height="24" border="0" alt="" ></img></td>
+  </tr>
+  <tr valign="top" class="noprint">
+  <td align="left" nowrap><img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="12" height="12" border="0" alt=""></td>  </tr>
+  <tr valign="top" class="noprint">
+    <td  align="left" nowrap style="background:#cc0000;" class="lbc00">
+    <table width="100%" cellspacing="0" cellpadding="3" border="0" summary="Application bar">
+      <tr valign="middle">
+        <td align="left" class="sfff" width="40%" nowrap><b>Class Schedule</b></td>
+        <td align="right" class="xsfffb" width="20%" nowrap><div id="quickLink">
+  <form name="quickLink" action="/servlet/adp.DirectConnect" method="post">
+		<img src="https://accessplus.iastate.edu/accessplus/img/icon.key.gif" alt="Enter keyword"/ width="12" height="12" border="0"><img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="2" height="12" border="0" alt="Enter keyword"><input type="text" name="APPL" value="Enter keyword" maxlength="20" size="12" onFocus="this.value=''" onclick="ndOff();ddOpen=false;document.quickLink.ddStrtAPPL.value=document.quickLink.APPL.value;overlib('',DELAY,0);nd();" style="background:#fff;border-left:1px solid #666;border-top:1px solid #666;border-bottom:1px solid #666;border-right:0;margin:-1 0 0 0;padding:1 0 1 1;height:16px;vertical-align:middle;font-size:11px;" alt="Enter keyword"><a href="javascript:document.quickLink.ddStrtAPPL.value=document.quickLink.APPL.value;openDropDown(document.quickLink,document.quickLink.APPL,document.quickLink.ddStrtAPPL,'/AP01/AP300DD.jsp',0,150);" ><img src="https://accessplus.iastate.edu/accessplus/img/button.arrow.down.14.gif" width="14" height="14" border="0" title="Show Links" alt="Show Links" style="background:#fff;border-right:1px solid #666;border-top:1px solid #666;border-bottom:1px solid #666;margin:-1 0 0 0;padding:0;spacing:0;vertical-align:middle;" /></a><img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="2" height="12" border="0" alt=""><a href="javascript:document.quickLink.submit();" ><img src="https://accessplus.iastate.edu/accessplus/img/button.go.14.gif" width="14" height="14" border="0" title="Go" alt="Go" style="background:#fff;border-right:1px solid #666;border-top:1px solid #666;border-bottom:1px solid #666;margin:-1 0 0 0;padding:0;spacing:0;vertical-align:middle;" /></a>          <input type="hidden" name="ddSelAPPL" id="ddSelAPPL" value=""><input type="hidden" name="ddStrtAPPL" id="ddStrtAPPL" value="">
+	</form>
+</div>
+        </td>        <td align="right" class="xsfffb" width="40%" nowrap><img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="12" height="12" border="0" alt="" /><a href="javascript:openHelpWindow('/frontdoor/emailform.jsp?jspName=R4830.jsp','430','615')"><img src="https://accessplus.iastate.edu/accessplus/img/icon.contact.gif" width="12" height="12" border="0" title="Contact" alt="Contact" /><img src="https://accessplus.iastate.edu/accessplus/img/icon.contact.text.gif" width="36" height="12" border="0" title="Contact" alt="Contact" /></a><img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="12" height="12" border="0" alt="" /><a href="javascript:window.print()"><img src="https://accessplus.iastate.edu/accessplus/img/icon.print.gif" width="12" height="12" border="0" alt="Print" /><img src="https://accessplus.iastate.edu/accessplus/img/icon.print.text.gif" width="24" height="12" border="0" alt="Print" /></a><img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="12" height="12" border="0" alt="" /><a href="javascript:openHelpWindow('/help/help.jsp?AP005-INPT-PAGE-ID=R4830.jsp&AP005-INPT-SYS-ID=R480','400','750')"><img src="https://accessplus.iastate.edu/accessplus/img/icon.help.gif" width="12" height="12" border="0" alt="Help" /><img src="https://accessplus.iastate.edu/accessplus/img/icon.help.text.gif" width="22" height="12" border="0" alt="Help" /></a><img src="https://accessplus.iastate.edu/accessplus/img/spacer.gif" width="12" height="12" border="0" alt="" /><a href="/servlet/adp.A_Plus?A_Plus_action=/R480/R480.jsp&&&applicationPrettyPrint=&applicationSize=B"><img src="https://accessplus.iastate.edu/accessplus/img/icon.maximize.gif" width="12" height="12" border="0" title="Hide Tabs" alt="Hide Tabs" /><img src="https://accessplus.iastate.edu/accessplus/img/icon.hidetabs.text.gif" width="41" height="12" border="0" title="Hide Tabs" alt="Hide Tabs" /></a></td>
+      </tr>
+    </table>
+        </td>
+      </tr>
+<!--------------------------------------------------------BEGIN OF AREA FOR PRINT WINDOW---------------------------------------------->
+    <tr valign="top">
+     <td align="left" nowrap>
+         <table border="0" cellpadding="0" cellspacing="0" width="100%">   <!-- Application Table -->
+          <tr>
+           <td colspan="100">   <!-- mainform cell --> 
+            <form name="mainform" method="post" action="/servlet/adp.A_Plus" onSubmit="submitCheck();">
+            <input type="hidden" name="A_Plus_action" value="/R480/R4830.jsp">
+            <input type="hidden" name="applicationSize" value="">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%">   
+       <!-- Build Key Lines -->
+<tr class="noprint">
+    <td colspan="2" align="left" style="background:#eeaaaa;" valign="top" class="lbc00">
+        <!--INSERT CONTROLS FOR BORDER AND ALIGNMENT INTO THE TABLE TAG--><!--CHANGE THE SIZE AND MAXLENGTH IN THE INPUT TAGS TO TAILOR YOUR SEARCH CRITERIA-->
+          <input type="hidden" name="KEY_UNIVERSITY_ID" id="KEY_UNIVERSITY_ID" value="">
+          <input type="hidden" name="KEY_MENU_CHOICE" id="KEY_MENU_CHOICE" value="">
+    </td>
+   </tr>
+             </table>
+           </form>  <!-- End mainform -->  
+           </td>
+          </tr>
+       <tr>
+    <td colspan="2" valign="top" class="lbc00">
+   <!-- Build Browse Buttons (if needed) -->
+   <table align="left" border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+    <td>
+   </td>
+   <td>
+   </td>
+   </tr>
+  </table>
+   </td>
+   </tr>
+   <tr valign="top">
+    <td valign="top" class="lbc00">
+   &nbsp;
+   </td>
+   <td>
+
+<!--***************************************************************
+*                    BEGINNING OF DISPLAY AREA                *
+***************************************************************-->
+
+
+<!--****************************************************** BEGINNING OF DISPLAY AREA ******************************************************-->
+
+ <form name="inputform" method="Post" action="/servlet/adp.A_Plus">
+ 
+    <input type="hidden" name="A_Plus_action" value="/R480/R4830.jsp">
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ <input type="hidden" name="KEY_MENU_CHOICE" value="">
+ <input type="hidden" name="R5035_NEW_BRWS_IND" value="Y">
+ 
+ 
+ <input type="hidden" name="tmp_tccyy1" value="5 2014">
+ 
+ 
+
+
+ 
+ 
+<table width="700" cellspacing="0" cellpadding="0" border="0">
+ <tr>
+  <td class="xl"><b>Iowa State University Class Schedule</b></td>
+ </tr>
+ <tr>
+   <td colspan="8">&nbsp;</td>
+ </tr>
+
+</table>
+
+<div style="font-size:14px;" class="noprint">
+ <table border="0" cellspacing="0" cellpadding="2">
+  <tr>
+   <td><b>Term: </b>
+       <select name="terms_select" onChange="javascript:document.inputform.submit();">
+	     
+         
+           
+            
+         
+           
+           
+             <option value="2" >Spring 2015</option>
+            
+         
+           
+           
+             <option value="3" >Summer 2015</option>
+            
+         
+           
+           
+             <option value="4" selected>Fall 2015</option>
+            
+          
+       </select>
+      </td>
+      <td>     <!-- link below was "http://www.registrar.iastate.edu/registration/withdraw.shtml" -->
+       <a href="http://www.registrar.iastate.edu/fees/tuition-adj.shtml" target="AplusLinks">Tuition Adjustment Information</a>
+      </td>
+<!--      <td>
+       <a href="javascript:exportCsv();">Export to Calendar</a>
+      </td>
+-->
+ 
+  </tr>
+ </table>
+</div>
+</form>
+ 
+      
+      
+      
+ 
+      
+ 
+ 
+<table border="0" cellspacing="0" cellpadding="2" width="660">
+  <tr>
+   <td colspan="8" align="left" class="xl" nowrap>Fall 2015 Class Schedule for STAPLER TYLER SCOTT</td>
+  </tr>
+
+ <tr>
+  <td colspan="6">Room assignments will display after 07/24/2015.</td>
+  <td colspan="2" align="right"><a href="javascript:change('Grid', 'LinkChangeGrid');"><div id="LinkChangeGrid">View Schedule Time Grid</div></a></td>
+ </tr>
+ <tr>
+  <td colspan="8" align="right"><a href="javascript:change('long', 'LinkChange');"><div id="LinkChange">Remove Schedule Details</div></a></td>
+ </tr>
+ 
+  <tr>
+   <td colspan="8" align="right">
+    <a href="http://www.isubookstore.com/SelectCourses.aspx?src=2&type=2&stoid=130&trm=Fall 15&cid=9240005,6769020,2120005,3356005,5411005,5411010,       ,       ,       ,       ,       " target="AplusLinks">View Complete Textbook List</a>
+   </td>
+  </tr>
+
+   <tr><td colspan="8"><img src="https://accessplus.iastate.edu/accessplus/img/black.gif" WIDTH="100%" HEIGHT="1" /></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ </table>
+ 
+<!-- *************************SCHEDULE TIME GRID STARTS************************** -->
+
+ 
+
+ 
+
+ 
+ 
+ 
+
+ 
+<div id="Grid" style="display: none;">
+For tips on printing the class schedule, click help in upper right corner.
+
+<br>
+<table width='960px' height='350px'  cellpadding='0' cellspacing='0' style='border-collapse:collapse;border: 2px solid black;'>
+ 
+<colgroup span='1' style='border: 2px solid black;>
+<colgroup span='6' style='border: 2px solid black;>
+<colgroup span='6' style='border: 2px solid black;>
+<colgroup span='6' style='border: 2px solid black;>
+<colgroup span='6' style='border: 2px solid black;>
+<colgroup span='6' style='border: 2px solid black;>
+<colgroup span='6' style='border: 2px solid black;>
+<colgroup span='6' style='border: 2px solid black;>
+<colgroup span='6' style='border: 2px solid black;>
+<colgroup span='6' style='border: 2px solid black;>
+<colgroup span='6' style='border: 2px solid black;>
+<colgroup span='6' style='border: 2px solid black;>
+<colgroup span='6' style='border: 2px solid black;>
+<colgroup span='6' style='border: 2px solid black;>
+<colgroup span='6' style='border: 2px solid black;>
+<colgroup span='6' style='border: 2px solid black;>
+<colgroup span='6' style='border: 2px solid black;>
+ 
+<tr height='50px' style='border-top-style:solid;border-width:2px;'>
+<td width='60px' style='border-bottom:2px solid #000;border-top:2px solid #000;border-left:2px solid #000;'></td>
+
+    <td width='60px' style='border:2px solid #000;text-align:center;' colspan='6'> <b>06:00</b>
+    </td>
+
+    <td width='60px' style='border:2px solid #000;text-align:center;' colspan='6'> <b>07:00</b>
+    </td>
+
+    <td width='60px' style='border:2px solid #000;text-align:center;' colspan='6'> <b>08:00</b>
+    </td>
+
+    <td width='60px' style='border:2px solid #000;text-align:center;' colspan='6'> <b>09:00</b>
+    </td>
+
+    <td width='60px' style='border:2px solid #000;text-align:center;' colspan='6'> <b>10:00</b>
+    </td>
+
+    <td width='60px' style='border:2px solid #000;text-align:center;' colspan='6'> <b>11:00</b>
+    </td>
+
+    <td width='60px' style='border:2px solid #000;text-align:center;' colspan='6'> <b>12:00</b>
+    </td>
+
+    <td width='60px' style='border:2px solid #000;text-align:center;' colspan='6'> <b>01:00</b>
+    </td>
+
+    <td width='60px' style='border:2px solid #000;text-align:center;' colspan='6'> <b>02:00</b>
+    </td>
+
+    <td width='60px' style='border:2px solid #000;text-align:center;' colspan='6'> <b>03:00</b>
+    </td>
+
+    <td width='60px' style='border:2px solid #000;text-align:center;' colspan='6'> <b>04:00</b>
+    </td>
+
+    <td width='60px' style='border:2px solid #000;text-align:center;' colspan='6'> <b>05:00</b>
+    </td>
+
+    <td width='60px' style='border:2px solid #000;text-align:center;' colspan='6'> <b>06:00</b>
+    </td>
+
+    <td width='60px' style='border:2px solid #000;text-align:center;' colspan='6'> <b>07:00</b>
+    </td>
+
+    <td width='60px' style='border:2px solid #000;text-align:center;' colspan='6'> <b>08:00</b>
+    </td>
+
+    <td width='60px' style='border:2px solid #000;text-align:center;' colspan='6'> <b>09:00</b>
+    </td>
+
+</tr>
+ 
+
+       <tr height='50px' >
+       <td width='60px' style='border:2px solid #000;text-align:center;'><b> Mon </b>
+       </td>
+       
+              <td id='cell00' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell01' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell02' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell03' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell04' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell05' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell06' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell07' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell08' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell09' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell010' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell011' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell1012' width='50px' style='border: 1px solid black;border-left:2px solid #000;border-bottom:2px solid #000;text-align:center;' colspan='5' bgcolor='B080B0'>ENGL<br>314</td>
+       
+              <td id='cell013' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell214' width='50px' style='border: 1px solid black;border-bottom:2px solid #000;text-align:center;' colspan='5' bgcolor='80B080'>CPR E<br>381</td>
+       
+              <td id='cell015' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell616' width='50px' style='border: 1px solid black;border-bottom:2px solid #000;text-align:center;' colspan='5' bgcolor='8080B0'>E E<br>201</td>
+       
+              <td id='cell017' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell018' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell019' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell020' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell021' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell022' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell023' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell024' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell025' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell026' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell027' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell028' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell029' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell030' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell031' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell032' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell033' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell034' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell035' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell036' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell037' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell038' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell039' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell040' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell041' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell042' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell043' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell044' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell045' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell046' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell047' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell048' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell049' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell050' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell051' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell052' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell053' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell054' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell1355' width='80px' style='border: 1px solid black;border-bottom:2px solid #000;text-align:center;' colspan='8' bgcolor='B08000'>MUSIC<br>114A</td>
+       
+              <td id='cell056' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell057' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell058' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell059' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell060' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell061' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell062' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell063' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell064' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell065' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell066' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell067' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell068' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell069' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell070' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell071' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell072' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell073' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell074' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell075' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell076' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+       </tr>
+
+       <tr height='50px' >
+       <td width='60px' style='border:2px solid #000;text-align:center;'><b> Tue </b>
+       </td>
+       
+              <td id='cell10' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell11' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell12' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell13' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell14' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell15' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell16' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell17' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell18' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell19' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell110' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell111' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell012' width='80px' style='border: 1px solid black;border-left:2px solid #000;border-bottom:2px solid #000;text-align:center;' colspan='8' bgcolor='B08080'>CPR E<br>310</td>
+       
+              <td id='cell113' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell114' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell115' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell116' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell117' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell118' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell119' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell120' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell121' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell122' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell923' width='180px' style='border: 1px solid black;border-bottom:2px solid #000;text-align:center;' colspan='18' bgcolor='8080B0'>E E<br>201</td>
+       
+              <td id='cell124' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell125' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell126' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell127' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell128' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell129' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell130' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell131' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell132' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell133' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell134' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell135' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell136' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell137' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell138' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell139' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell140' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell141' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell142' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell1443' width='80px' style='border: 1px solid black;border-bottom:2px solid #000;text-align:center;' colspan='8' bgcolor='B08000'>MUSIC<br>114A</td>
+       
+              <td id='cell144' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell145' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell146' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell147' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell148' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell149' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell150' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell151' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell152' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell153' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell154' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell155' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell156' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell157' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell158' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell159' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell160' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell161' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell162' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell163' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell164' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+       </tr>
+
+       <tr height='50px' >
+       <td width='60px' style='border:2px solid #000;text-align:center;'><b> Wed </b>
+       </td>
+       
+              <td id='cell20' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell21' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell22' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell23' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell24' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell25' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell26' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell27' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell28' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell29' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell210' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell211' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell1112' width='50px' style='border: 1px solid black;border-left:2px solid #000;border-bottom:2px solid #000;text-align:center;' colspan='5' bgcolor='B080B0'>ENGL<br>314</td>
+       
+              <td id='cell213' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell314' width='50px' style='border: 1px solid black;border-bottom:2px solid #000;text-align:center;' colspan='5' bgcolor='80B080'>CPR E<br>381</td>
+       
+              <td id='cell215' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell716' width='50px' style='border: 1px solid black;border-bottom:2px solid #000;text-align:center;' colspan='5' bgcolor='8080B0'>E E<br>201</td>
+       
+              <td id='cell217' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell218' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell219' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell220' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell221' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell222' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell223' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell224' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell225' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell226' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell227' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell228' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell229' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell230' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell231' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell232' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell233' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell234' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell235' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell236' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell237' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell238' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell239' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell240' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell241' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell242' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell243' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell244' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell245' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell246' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell247' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell248' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell249' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell250' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell251' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell252' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell253' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell254' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell1555' width='80px' style='border: 1px solid black;border-bottom:2px solid #000;text-align:center;' colspan='8' bgcolor='B08000'>MUSIC<br>114A</td>
+       
+              <td id='cell256' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell257' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell258' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell259' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell260' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell261' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell262' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell263' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell264' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell265' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell266' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell267' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell268' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell269' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell270' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell271' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell272' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell273' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell274' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell275' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell276' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+       </tr>
+
+       <tr height='50px' >
+       <td width='60px' style='border:2px solid #000;text-align:center;'><b> Thur </b>
+       </td>
+       
+              <td id='cell30' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell31' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell32' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell33' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell34' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell35' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell36' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell37' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell38' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell39' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell310' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell311' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell112' width='80px' style='border: 1px solid black;border-left:2px solid #000;border-bottom:2px solid #000;text-align:center;' colspan='8' bgcolor='B08080'>CPR E<br>310</td>
+       
+              <td id='cell313' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell314' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell315' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell316' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell317' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell318' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell319' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell320' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell321' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell322' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell323' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell324' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell325' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell326' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell327' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell328' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell329' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell330' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell331' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell332' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell333' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell334' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell335' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell336' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell337' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell338' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell339' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell340' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell341' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell342' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell343' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell344' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell345' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell346' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell347' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell348' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell349' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell350' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell351' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell352' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell353' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell354' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell355' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell356' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell357' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell358' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell359' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell1660' width='80px' style='border: 1px solid black;border-left:2px solid #000;border-bottom:2px solid #000;text-align:center;' colspan='8' bgcolor='B08000'>MUSIC<br>114A</td>
+       
+              <td id='cell361' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell362' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell363' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell364' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell365' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell366' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell367' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell368' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell369' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell370' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell371' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell372' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell373' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell374' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell375' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell376' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell377' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell378' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell379' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell380' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell381' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+       </tr>
+
+       <tr height='50px' >
+       <td width='60px' style='border:2px solid #000;text-align:center;'><b> Fri </b>
+       </td>
+       
+              <td id='cell40' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell41' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell42' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell43' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell44' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell45' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell46' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell47' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell48' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell49' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell410' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell411' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell1212' width='50px' style='border: 1px solid black;border-left:2px solid #000;border-bottom:2px solid #000;text-align:center;' colspan='5' bgcolor='B080B0'>ENGL<br>314</td>
+       
+              <td id='cell413' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell414' width='50px' style='border: 1px solid black;border-bottom:2px solid #000;text-align:center;' colspan='5' bgcolor='80B080'>CPR E<br>381</td>
+       
+              <td id='cell415' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell816' width='50px' style='border: 1px solid black;border-bottom:2px solid #000;text-align:center;' colspan='5' bgcolor='8080B0'>E E<br>201</td>
+       
+              <td id='cell417' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell418' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell419' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell420' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell421' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell422' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell423' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell424' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell425' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell426' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell427' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell428' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell429' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell430' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell431' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell432' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell433' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell434' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell435' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell436' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell537' width='110px' style='border: 1px solid black;border-bottom:2px solid #000;text-align:center;' colspan='11' bgcolor='80B080'>CPR E<br>381</td>
+       
+              <td id='cell438' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell439' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell440' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell441' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell442' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell443' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell444' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell1745' width='80px' style='border: 1px solid black;border-bottom:2px solid #000;text-align:center;' colspan='8' bgcolor='B08000'>MUSIC<br>114A</td>
+       
+              <td id='cell446' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell447' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell448' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell449' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell450' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell451' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell452' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell453' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell454' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell455' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell456' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell457' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell458' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell459' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell460' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell461' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell462' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell463' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell464' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell465' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell466' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+       </tr>
+
+       <tr height='50px' >
+       <td width='60px' style='border:2px solid #000;text-align:center;'><b> Sat </b>
+       </td>
+       
+              <td id='cell50' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell51' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell52' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell53' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell54' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell55' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell56' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell57' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell58' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell59' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell510' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell511' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell512' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell513' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell514' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell515' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell516' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell517' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell518' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell519' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell520' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell521' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell522' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell523' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell1824' width='110px' style='border: 1px solid black;border-left:2px solid #000;border-bottom:2px solid #000;text-align:center;' colspan='11' bgcolor='B08000'>MUSIC<br>114A</td>
+       
+              <td id='cell525' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell526' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell527' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell528' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell529' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell530' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell531' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell532' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell533' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell534' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell535' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell536' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell537' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell538' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell539' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell540' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell541' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell542' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell543' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell544' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell545' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell546' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell547' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell548' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell549' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell550' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell551' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell552' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell553' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell554' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell555' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell556' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell557' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell558' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell559' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell560' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell561' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell562' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell563' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell564' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell565' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell566' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell567' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell568' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell569' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell570' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell571' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell572' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell573' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell574' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell575' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell576' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell577' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell578' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell579' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell580' width='10px' style='border-left:2px solid #000;border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell581' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell582' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell583' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell584' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              <td id='cell585' width='10px' style='border-bottom:2px solid #000;'>&nbsp;</td>
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+              
+       
+       </tr>
+
+ 
+</table>
+ 
+<br>
+<table border="0" cellspacing="0" cellpadding="2" width="660">
+<tr><td><img src="https://accessplus.iastate.edu/accessplus/img/black.gif" WIDTH="100%" HEIGHT="1" /></td></tr>
+</table>
+</div>
+
+<!-- *************************SCHEDULE TIME GRID ENDS************************** -->
+  <table border="0" cellspacing="0" cellpadding="2" width="660">
+ 
+ 
+   <tr class="odd">
+    <td><b>Course</b></td>
+    <td><b>Credit</b></td>
+    <td><b>Day</b></td>
+    <td><b>Start</b></td>
+    <td><b>Stop</b></td>
+    <td><b><A HREF="http://www.registrar.iastate.edu/catalog/schedule/classrooms.shtml" target="AplusLinks">Location</A></b></td>
+    <td><b>Meeting Dates</b></td>
+    <td><b>Instructor</b></td>
+   </tr>
+
+
+  
+   <tr class="odd">
+        
+	<td><b><A HREF="#" onmouseover="overlib(getCourseMsg('CPR+E+310', '2015-16'),DELAY,10,CAPTION,'CPR E 310 ',WIDTH,1000,HEIGHT,3000);"; onmouseout="nd()">CPR E 310 </a>&nbsp; A</b></td>
+	
+	<td>
+	 
+	   
+	      3.0
+     
+	</td>
+	<td> T R  </td>
+	<td>08:00 A</td>
+	<td>09:20 A</td>
+	<td>               </td>
+	<td nowrap>
+  08/24/15-12/18/15 
+  
+    </td>
+	<td>                         </td>
+
+   </tr>
+
+  
+  
+  
+  
+     
+ 
+
+  
+   <tr class="even">
+        
+	<td><b><A HREF="#" onmouseover="overlib(getCourseMsg('CPR+E+381', '2015-16'),DELAY,10,CAPTION,'CPR E 381 ',WIDTH,1000,HEIGHT,3000);"; onmouseout="nd()">CPR E 381 </a>&nbsp; D</b></td>
+	
+	<td>
+	 
+	   
+	      4.0
+     
+	</td>
+	<td>M W F </td>
+	<td>09:00 A</td>
+	<td>09:50 A</td>
+	<td>               </td>
+	<td nowrap>
+  08/24/15-12/18/15 
+  
+    </td>
+	<td>                         </td>
+
+   </tr>
+
+  
+ 
+   <TR class="even"> 
+    <td>&nbsp;</td>
+	<td>&nbsp;</td>
+    <td>    F </td>
+	<td>02:10 P</td>
+	<td>04:00 P</td>
+	<td>               </td>
+	<td>&nbsp;</td>
+	<td>                         </td>
+   </tr>
+  
+  
+  
+  
+     
+ 
+
+  
+   <tr class="odd">
+        
+	<td><b><A HREF="#" onmouseover="overlib(getCourseMsg('E+E+201', '2015-16'),DELAY,10,CAPTION,'E E   201 ',WIDTH,1000,HEIGHT,3000);"; onmouseout="nd()">E E   201 </a>&nbsp; A</b></td>
+	
+	<td>
+	 
+	   
+	      4.0
+     
+	</td>
+	<td>M W F </td>
+	<td>10:00 A</td>
+	<td>10:50 A</td>
+	<td>               </td>
+	<td nowrap>
+  08/24/15-12/18/15 
+  
+    </td>
+	<td>                         </td>
+
+   </tr>
+
+  
+ 
+   <TR class="odd"> 
+    <td>&nbsp;</td>
+	<td>&nbsp;</td>
+    <td> T    </td>
+	<td>11:00 A</td>
+	<td>02:00 P</td>
+	<td>               </td>
+	<td>&nbsp;</td>
+	<td>                         </td>
+   </tr>
+  
+  
+  
+  
+     
+ 
+
+  
+   <tr class="even">
+        
+	<td><b><A HREF="#" onmouseover="overlib(getCourseMsg('ENGL+314', '2015-16'),DELAY,10,CAPTION,'ENGL  314 ',WIDTH,1000,HEIGHT,3000);"; onmouseout="nd()">ENGL  314 </a>&nbsp; 1</b></td>
+	
+	<td>
+	 
+	   
+	      3.0
+     
+	</td>
+	<td>M W   </td>
+	<td>08:00 A</td>
+	<td>08:50 A</td>
+	<td>               </td>
+	<td nowrap>
+  08/24/15-12/18/15 
+  
+    </td>
+	<td>                         </td>
+
+   </tr>
+
+  
+ 
+   <TR class="even"> 
+    <td>&nbsp;</td>
+	<td>&nbsp;</td>
+    <td>    F </td>
+	<td>08:00 A</td>
+	<td>08:50 A</td>
+	<td>               </td>
+	<td>&nbsp;</td>
+	<td>                         </td>
+   </tr>
+  
+  
+  
+  
+     
+ 
+
+   </tr>
+   
+ 
+
+  
+   <tr class="odd">
+        
+	<td><b><A HREF="#" onmouseover="overlib(getCourseMsg('MUSIC+114A', '2015-16'),DELAY,10,CAPTION,'MUSIC 114A',WIDTH,1000,HEIGHT,3000);"; onmouseout="nd()">MUSIC 114A</a>&nbsp; 2</b></td>
+	
+	<td>
+	 
+	   
+	      1.0
+     
+	</td>
+	<td>MTWRF </td>
+	<td>05:10 P</td>
+	<td>06:30 P</td>
+	<td>               </td>
+	<td nowrap>
+  08/24/15-12/18/15 
+  
+    </td>
+	<td>                         </td>
+
+   </tr>
+
+  
+ 
+   <TR class="odd"> 
+    <td>&nbsp;</td>
+	<td>&nbsp;</td>
+    <td>     S</td>
+	<td>10:00 A</td>
+	<td>11:50 A</td>
+	<td>               </td>
+	<td>&nbsp;</td>
+	<td>                         </td>
+   </tr>
+  
+  
+  
+  
+     
+ 
+  <tr><td colspan="8"><br></td></tr>
+
+  <tr><td><b><A HREF="#" onmouseover="overlib(getCourseMsg('MUSIC+114A', '2015-16'),DELAY,10,CAPTION,'MUSIC 114A',WIDTH,1000,HEIGHT,3000);"; onmouseout="nd()">MUSIC 114A</a>  </b></td><td>5411005</td><td colspan="8">Canceled</td></tr>
+  <tr><td colspan="8"><br></td></tr>
+
+ 
+
+  <tr><td colspan="8" class="m"><b>Fall 2015 Summary - 15.0 Credit Hours, 0 Audit Crses, 0 Zero Cr. Crses &amp; 0 Required Crses</b></td></tr>
+  <tr><td colspan="8"><img src="https://accessplus.iastate.edu/accessplus/img/black.gif" WIDTH="100%" HEIGHT="1" /></td></tr>
+</table>
+ 
+<div id="long" style="display: block;">
+
+<TABLE border="0" cellspacing="0" cellpadding="2" width="580">
+  <tr><td class="xl" colspan="5">Fall 2015 Schedule Details
+  </td>
+  </tr>
+  <tr>
+  <td colspan="9" align="right">
+  <a href="http://www.isubookstore.com/SelectCourses.aspx?src=2&type=2&stoid=130&trm=Fall 15&cid=9240005,6769020,2120005,3356005,5411005,5411010,       ,       ,       ,       ,       " target="AplusLinks">View Complete Textbook List</a>
+  </td>
+  </tr>
+  
+   <TR class="odd">                                                  
+   
+    <td colspan="5" class="l"><b><A HREF="#" onmouseover="overlib(getCourseMsg('CPR+E+310', '2015-16'),DELAY,10,CAPTION,'CPR E 310 ',WIDTH,1000,HEIGHT,3000);"; onmouseout="nd()">CPR E 310 </a>&nbsp;
+   
+  section&nbsp; A&nbsp;
+      <!-- %=r5035v1c.getR5035_B_CRSE_TITLE(i)%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+	  THEORET FOUND CPR E&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  
+	 3.0
+  
+  
+  
+  
+     &nbsp;
+  
+     Credits
+  
+     </b>
+	 </td>
+   </tr>
+
+ 
+
+ <tr class="odd"> 
+  <td colspan="5"><b>Last day to drop w/o extenuating circumstances:</b>&nbsp;11/02/2015</td>
+ </tr>
+
+  <tr class="odd">
+    <td colspan="2" valign="top" align="right">Reference #:</td>
+    <td colspan="3">9240005</td>
+  </tr>
+  
+   <tr class="odd">
+    <td colspan="2" valign="top" align="right">Prerequisites:</td>
+    <td colspan="3">
+      CREDIT OR ENRLMT IN CPR E 288, COM S 228 
+      
+                                                           
+      
+                                                           
+      
+                                                           
+    </td>
+   </tr>
+  
+  
+   <tr class="odd">
+    <td colspan="2" valign="top" align="right">Meeting Dates:</td>
+	<td colspan="3">
+  08/24/15-12/18/15 
+  
+    </td>
+   </tr>
+ 
+
+ 
+
+ 
+ 
+ 
+
+ 
+ 
+ 
+  
+ 
+  
+ 
+   
+   
+   
+   
+   
+ 
+   <tr class="odd">
+       <td colspan="2" valign="top" align="right"></td>
+       <td colspan="3"><a href="http://www.isubookstore.com/SelectCourses.aspx?src=2&type=2&stoid=130&trm=Fall 15&cid=9240005" target="AplusLinks">Textbook Information</a></td>
+   </tr>
+ 
+   
+ 
+   <tr class="odd">
+    <td width="60">&nbsp;&nbsp;&nbsp;<b>Day</b></td>
+    <td width="100"><b>Start Time</b></td>
+    <td width="100"><b>Stop Time</b></td>
+    <td width="150"><b><a href="http://www.registrar.iastate.edu/catalog/schedule/classrooms.shtml" target="AplusLinks">Location</A></b></td>
+    <td width="170"><b>Instructor</b></td>
+   </tr>
+   <tr class="odd">
+	<td>&nbsp;&nbsp;&nbsp; T R  </td>
+	<td>08:00 A</td>
+	<td>09:20 A</td>
+	<td>               </td>
+	<td>                         </td>
+   </tr>
+  
+  
+  
+   <TR class="odd">
+    <td>&nbsp;&nbsp;&nbsp;      </td>
+    <td>  </td>
+    <td>  </td>
+	<td>               </td>
+    <td><A HREF="mailto:                                                  ?Subject=CPR E%20310 %20Section:%20 A">                         </a></td>
+   </tr>
+  
+  
+  
+ 
+ 
+   <TR class="even">                                                  
+   
+    <td colspan="5" class="l"><b><A HREF="#" onmouseover="overlib(getCourseMsg('CPR+E+381', '2015-16'),DELAY,10,CAPTION,'CPR E 381 ',WIDTH,1000,HEIGHT,3000);"; onmouseout="nd()">CPR E 381 </a>&nbsp;
+   
+  section&nbsp; D&nbsp;
+      <!-- %=r5035v1c.getR5035_B_CRSE_TITLE(i)%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+	  CPTR ORG &amp;ASMB PROG&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  
+	 4.0
+  
+  
+  
+  
+     &nbsp;
+  
+     Credits
+  
+     </b>
+	 </td>
+   </tr>
+
+ 
+
+ <tr class="even"> 
+  <td colspan="5"><b>Last day to drop w/o extenuating circumstances:</b>&nbsp;11/02/2015</td>
+ </tr>
+
+  <tr class="even">
+    <td colspan="2" valign="top" align="right">Reference #:</td>
+    <td colspan="3">6769020</td>
+  </tr>
+  
+   <tr class="even">
+    <td colspan="2" valign="top" align="right">Prerequisites:</td>
+    <td colspan="3">
+      CPR E 288                                
+      
+                                                           
+      
+                                                           
+      
+                                                           
+    </td>
+   </tr>
+  
+  
+   <tr class="even">
+    <td colspan="2" valign="top" align="right">Meeting Dates:</td>
+	<td colspan="3">
+  08/24/15-12/18/15 
+  
+    </td>
+   </tr>
+ 
+
+ 
+
+ 
+ 
+ 
+
+ 
+ 
+ 
+  
+ 
+  
+ 
+   
+   
+   
+   
+   
+ 
+   <tr class="even">
+       <td colspan="2" valign="top" align="right"></td>
+       <td colspan="3"><a href="http://www.isubookstore.com/SelectCourses.aspx?src=2&type=2&stoid=130&trm=Fall 15&cid=6769020" target="AplusLinks">Textbook Information</a></td>
+   </tr>
+ 
+   
+ 
+   <tr class="even">
+    <td width="60">&nbsp;&nbsp;&nbsp;<b>Day</b></td>
+    <td width="100"><b>Start Time</b></td>
+    <td width="100"><b>Stop Time</b></td>
+    <td width="150"><b><a href="http://www.registrar.iastate.edu/catalog/schedule/classrooms.shtml" target="AplusLinks">Location</A></b></td>
+    <td width="170"><b>Instructor</b></td>
+   </tr>
+   <tr class="even">
+	<td>&nbsp;&nbsp;&nbsp;M W F </td>
+	<td>09:00 A</td>
+	<td>09:50 A</td>
+	<td>               </td>
+	<td>                         </td>
+   </tr>
+  
+   <TR class="even"> 
+    <td>&nbsp;&nbsp;&nbsp;    F </td>
+	<td>02:10 P</td>
+	<td>04:00 P</td>
+	<td>               </td>
+	<td>                         </td>
+   </tr>
+  
+  
+  
+   <TR class="even">
+    <td>&nbsp;&nbsp;&nbsp;      </td>
+    <td>  </td>
+    <td>  </td>
+	<td>               </td>
+    <td><A HREF="mailto:                                                  ?Subject=CPR E%20381 %20Section:%20 D">                         </a></td>
+   </tr>
+  
+  
+  
+ 
+ 
+   <TR class="odd">                                                  
+   
+    <td colspan="5" class="l"><b><A HREF="#" onmouseover="overlib(getCourseMsg('E+E+201', '2015-16'),DELAY,10,CAPTION,'E E   201 ',WIDTH,1000,HEIGHT,3000);"; onmouseout="nd()">E E   201 </a>&nbsp;
+   
+  section&nbsp; A&nbsp;
+      <!-- %=r5035v1c.getR5035_B_CRSE_TITLE(i)%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+	  ELECTRIC CIRCUITS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  
+	 4.0
+  
+  
+  
+  
+     &nbsp;
+  
+     Credits
+  
+     </b>
+	 </td>
+   </tr>
+
+ 
+
+ <tr class="odd"> 
+  <td colspan="5"><b>Last day to drop w/o extenuating circumstances:</b>&nbsp;11/02/2015</td>
+ </tr>
+
+  <tr class="odd">
+    <td colspan="2" valign="top" align="right">Reference #:</td>
+    <td colspan="3">2120005</td>
+  </tr>
+  
+   <tr class="odd">
+    <td colspan="2" valign="top" align="right">Prerequisites:</td>
+    <td colspan="3">
+      CR OR REGISTRATN IN MATH 267 AND PHYS 222
+      
+                                                           
+      
+                                                           
+      
+                                                           
+    </td>
+   </tr>
+  
+  
+   <tr class="odd">
+    <td colspan="2" valign="top" align="right">Notes:</td>
+	<td colspan="3">
+   
+   
+      CREDIT FOR EITHER E E 201 OR E E 442, BUT NOT    <br />BOTH, MAY BE APPLIED TOWARD GRADUATION. RESTRICTED   <br />TO CPR E, E E MAJORS ONLY.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+   
+   
+   <br>
+     Materials Fee $60.00
+  
+	</td>
+   </tr>
+  
+   <tr class="odd">
+    <td colspan="2" valign="top" align="right">Meeting Dates:</td>
+	<td colspan="3">
+  08/24/15-12/18/15 
+  
+    </td>
+   </tr>
+ 
+
+ 
+
+ 
+ 
+ 
+
+ 
+ 
+ 
+  
+ 
+  
+ 
+   
+   
+   
+   
+   
+ 
+   <tr class="odd">
+       <td colspan="2" valign="top" align="right"></td>
+       <td colspan="3"><a href="http://www.isubookstore.com/SelectCourses.aspx?src=2&type=2&stoid=130&trm=Fall 15&cid=2120005" target="AplusLinks">Textbook Information</a></td>
+   </tr>
+ 
+   
+ 
+   <tr class="odd">
+    <td width="60">&nbsp;&nbsp;&nbsp;<b>Day</b></td>
+    <td width="100"><b>Start Time</b></td>
+    <td width="100"><b>Stop Time</b></td>
+    <td width="150"><b><a href="http://www.registrar.iastate.edu/catalog/schedule/classrooms.shtml" target="AplusLinks">Location</A></b></td>
+    <td width="170"><b>Instructor</b></td>
+   </tr>
+   <tr class="odd">
+	<td>&nbsp;&nbsp;&nbsp;M W F </td>
+	<td>10:00 A</td>
+	<td>10:50 A</td>
+	<td>               </td>
+	<td>                         </td>
+   </tr>
+  
+   <TR class="odd"> 
+    <td>&nbsp;&nbsp;&nbsp; T    </td>
+	<td>11:00 A</td>
+	<td>02:00 P</td>
+	<td>               </td>
+	<td>                         </td>
+   </tr>
+  
+  
+  
+   <TR class="odd">
+    <td>&nbsp;&nbsp;&nbsp;      </td>
+    <td>  </td>
+    <td>  </td>
+	<td>               </td>
+    <td><A HREF="mailto:                                                  ?Subject=E E  %20201 %20Section:%20 A">                         </a></td>
+   </tr>
+  
+  
+  
+ 
+ 
+   <TR class="even">                                                  
+   
+    <td colspan="5" class="l"><b><A HREF="#" onmouseover="overlib(getCourseMsg('ENGL+314', '2015-16'),DELAY,10,CAPTION,'ENGL  314 ',WIDTH,1000,HEIGHT,3000);"; onmouseout="nd()">ENGL  314 </a>&nbsp;
+   
+  section&nbsp; 1&nbsp;
+      <!-- %=r5035v1c.getR5035_B_CRSE_TITLE(i)%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+	  TECHNICAL COMMUNCTN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  
+	 3.0
+  
+  
+  
+  
+     &nbsp;
+  
+     Credits
+  
+     </b>
+	 </td>
+   </tr>
+
+ 
+
+ <tr class="even"> 
+  <td colspan="5"><b>Last day to drop w/o extenuating circumstances:</b>&nbsp;11/02/2015</td>
+ </tr>
+
+  <tr class="even">
+    <td colspan="2" valign="top" align="right">Reference #:</td>
+    <td colspan="3">3356005</td>
+  </tr>
+  
+   <tr class="even">
+    <td colspan="2" valign="top" align="right">Prerequisites:</td>
+    <td colspan="3">
+      ENGL 250, JUNIOR CLASSIFICATION          
+      
+                                                           
+      
+                                                           
+      
+                                                           
+    </td>
+   </tr>
+  
+  
+   <tr class="even">
+    <td colspan="2" valign="top" align="right">Notes:</td>
+	<td colspan="3">
+   
+   
+      MOST SECTIONS WILL BE TAUGHT IN A COMPUTER LAB.  <br />COURSE RESTRICTED TO JUNIORS AND ABOVE.              <br />SECTION 1 WILL LIKELY MEET IN A DURHAM CENTER    <br />COMPUTER ROOM ON FRIDAYS                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+   
+   
+   
+	</td>
+   </tr>
+  
+   <tr class="even">
+    <td colspan="2" valign="top" align="right">Meeting Dates:</td>
+	<td colspan="3">
+  08/24/15-12/18/15 
+  
+    </td>
+   </tr>
+ 
+
+ 
+
+ 
+ 
+ 
+
+ 
+ 
+ 
+  
+ 
+  
+ 
+   
+   
+   
+   
+   
+ 
+   <tr class="even">
+       <td colspan="2" valign="top" align="right"></td>
+       <td colspan="3"><a href="http://www.isubookstore.com/SelectCourses.aspx?src=2&type=2&stoid=130&trm=Fall 15&cid=3356005" target="AplusLinks">Textbook Information</a></td>
+   </tr>
+ 
+   
+ 
+   <tr class="even">
+    <td width="60">&nbsp;&nbsp;&nbsp;<b>Day</b></td>
+    <td width="100"><b>Start Time</b></td>
+    <td width="100"><b>Stop Time</b></td>
+    <td width="150"><b><a href="http://www.registrar.iastate.edu/catalog/schedule/classrooms.shtml" target="AplusLinks">Location</A></b></td>
+    <td width="170"><b>Instructor</b></td>
+   </tr>
+   <tr class="even">
+	<td>&nbsp;&nbsp;&nbsp;M W   </td>
+	<td>08:00 A</td>
+	<td>08:50 A</td>
+	<td>               </td>
+	<td>                         </td>
+   </tr>
+  
+   <TR class="even"> 
+    <td>&nbsp;&nbsp;&nbsp;    F </td>
+	<td>08:00 A</td>
+	<td>08:50 A</td>
+	<td>               </td>
+	<td>                         </td>
+   </tr>
+  
+  
+  
+   <TR class="even">
+    <td>&nbsp;&nbsp;&nbsp;      </td>
+    <td>  </td>
+    <td>  </td>
+	<td>               </td>
+    <td><A HREF="mailto:                                                  ?Subject=ENGL %20314 %20Section:%20 1">                         </a></td>
+   </tr>
+  
+  
+  
+ 
+ 
+   <TR class="odd">                                                  
+   
+    <td colspan="5" class="l"><b><A HREF="#" onmouseover="overlib(getCourseMsg('MUSIC+114A', '2015-16'),DELAY,10,CAPTION,'MUSIC 114A',WIDTH,1000,HEIGHT,3000);"; onmouseout="nd()">MUSIC 114A</a>&nbsp;
+   
+  section&nbsp; 2&nbsp;
+      <!-- %=r5035v1c.getR5035_B_CRSE_TITLE(i)%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+	  MARCHING BAND&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  
+	 1.0
+  
+  
+  
+  
+     &nbsp;
+  
+     Credits
+  
+     </b>
+	 </td>
+   </tr>
+
+ 
+
+ <tr class="odd"> 
+  <td colspan="5"><b>Last day to drop w/o extenuating circumstances:</b>&nbsp;11/02/2015</td>
+ </tr>
+
+  <tr class="odd">
+    <td colspan="2" valign="top" align="right">Reference #:</td>
+    <td colspan="3">5411010</td>
+  </tr>
+  
+  
+   <tr class="odd">
+    <td colspan="2" valign="top" align="right">Notes:</td>
+	<td colspan="3">
+   
+   
+      ADDITIONAL EXPENSES MAY APPLY                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+   
+   
+   
+	</td>
+   </tr>
+  
+   <tr class="odd">
+    <td colspan="2" valign="top" align="right">Meeting Dates:</td>
+	<td colspan="3">
+  08/24/15-12/18/15 
+  
+    </td>
+   </tr>
+ 
+
+ 
+
+ 
+ 
+ 
+
+ 
+ 
+ 
+  
+ 
+  
+ 
+   
+   
+   
+   
+   
+ 
+   <tr class="odd">
+       <td colspan="2" valign="top" align="right"></td>
+       <td colspan="3"><a href="http://www.isubookstore.com/SelectCourses.aspx?src=2&type=2&stoid=130&trm=Fall 15&cid=5411010" target="AplusLinks">Textbook Information</a></td>
+   </tr>
+ 
+   
+ 
+   <tr class="odd">
+    <td width="60">&nbsp;&nbsp;&nbsp;<b>Day</b></td>
+    <td width="100"><b>Start Time</b></td>
+    <td width="100"><b>Stop Time</b></td>
+    <td width="150"><b><a href="http://www.registrar.iastate.edu/catalog/schedule/classrooms.shtml" target="AplusLinks">Location</A></b></td>
+    <td width="170"><b>Instructor</b></td>
+   </tr>
+   <tr class="odd">
+	<td>&nbsp;&nbsp;&nbsp;MTWRF </td>
+	<td>05:10 P</td>
+	<td>06:30 P</td>
+	<td>               </td>
+	<td>                         </td>
+   </tr>
+  
+   <TR class="odd"> 
+    <td>&nbsp;&nbsp;&nbsp;     S</td>
+	<td>10:00 A</td>
+	<td>11:50 A</td>
+	<td>               </td>
+	<td>                         </td>
+   </tr>
+  
+  
+  
+   <TR class="odd">
+    <td>&nbsp;&nbsp;&nbsp;      </td>
+    <td>  </td>
+    <td>  </td>
+	<td>               </td>
+    <td><A HREF="mailto:                                                  ?Subject=MUSIC%20114A%20Section:%20 2">                         </a></td>
+   </tr>
+  
+  
+  
+ 
+ 
+  </table>
+
+</div>
+
+
+
+<!--******************************************************** BUILD DISPLAY FOOTER ********************************************************-->
+
+
+<!--***************************************************************
+*                    BUILD DISPLAY FOOTER                     *
+***************************************************************-->
+   </td>
+   </tr>
+   <tr>
+   <td valign="bottom">
+   </td>
+   </tr>
+   </table>
+  </td>
+  </tr>
+  <tr>
+  <td>
+   <!-- Build Browse Buttons (if needed) -->
+   <table align="right" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+    </tr>
+   </table>
+  </td>
+  </tr>
+  <tr>
+  <td nowrap>
+  &nbsp;
+  </td>
+  </tr>
+  <tr>
+  <td colspan="3" nowrap>
+  <table cellpadding="0" cellspacing="0" border="0" width="100%">
+  <tr>
+  </tr>
+
+<!--------------------------------------------------------END OF AREA FOR PRINT WINDOW---------------------------------------------->
+</table>  <!--HeaderBar&Application-->
+</td>
+</tr>
+</table>  <!--Menu&Application-->
+</td>
+</tr>
+</TABLE>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
