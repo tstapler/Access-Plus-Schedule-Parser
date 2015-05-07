@@ -487,11 +487,17 @@ class IcsGenerator():
         return event
 
     def add_courses_to_calendar(self):
+        """
+        Add all of the meetings found in the parser to the calendar
+        """
         for course in self.target_parser.courses:
             for meeting in course.meeting_times:
                 self.ics_calendar.add_component(self.create_course(course, meeting))
 
     def export_to_ics(self):
+        """
+        Export a properly formatted .ics file
+        """
         with open("class_schedule.ics", "w") as file:
             file.write(self.ics_calendar.to_ical().decode('utf-8'))
 
