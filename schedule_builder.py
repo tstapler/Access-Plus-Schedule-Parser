@@ -14,8 +14,8 @@ class ScheduleParser():
     Parses the HTML of accessplus for schedule details
     """
     def __init__(self):
-        self.step_numb = 0  # Current Step
-        self.class_numb = 0  # Current Class
+        self.step_numb = 0
+        self.class_numb = 0
         self.curr_string = ""
         self.courses = []
         self.fields = {
@@ -33,15 +33,14 @@ class ScheduleParser():
             "location": list(),
             "instructor": list()
         }
-        #TODO: Change to dictionary for more maintainable code
-        self.field_patterns = [
-            re.compile('section *(.*)'),
-            re.compile('(\d\.\d)'),
-            re.compile('^(\d\d/\d\d/\d\d)-(\d\d/\d\d/\d\d)'),
-            re.compile(r'\b[MTWRF]\b'),
-            re.compile('\d\d:\d\d \s*'),
-            re.compile('.*(\d\d/\d\d/\d\d\d\d).*')
-        ]
+        self.field_patterns = {
+                "section" : re.compile('section *(.*)'),
+                "credits" : re.compile('(\d\.\d)'),
+                "meeting_dates" : re.compile('^(\d\d/\d\d/\d\d)-(\d\d/\d\d/\d\d)'),
+                "days" : re.compile(r'\b[MTWRF]\b'),
+                "time" : re.compile('\d\d:\d\d \s*'),
+                "date": re.compile('.*(\d\d/\d\d/\d\d\d\d).*')
+                }
 
     def __str__(self):
         return str(self.courses)
@@ -145,7 +144,7 @@ class ScheduleParser():
         EG: section 1
         """
         # Return the Section identifier
-        results = re.match(self.field_patterns[0], self.curr_string)
+        results = re.match(self.field_patterns["section"], self.curr_string)
         if results:
             self.fields["section"] = results.group(1)
             self.step_numb += 1
@@ -163,7 +162,7 @@ class ScheduleParser():
         Grab the number of credits the course is
         EG: 12.0
         """
-        results = re.match(self.field_patterns[1], self.curr_string)
+        results = re.match(self.field_patterns["credits"], self.curr_string)
         if (results):
             self.fields["credits"] = results.group(1)
         elif "Credits" in self.curr_string:
@@ -174,7 +173,7 @@ class ScheduleParser():
         Grab the last day you can drop the class
         EG: Last day to drop w/o extenuating circumstances: 11/08/2299
         """
-        results = re.match(self.field_patterns[5], self.curr_string)
+        results = re.match(self.field_patterns["date"], self.curr_string)
         if results:
             self.fields["drop_date"] = results.group(1)
             self.step_numb += 1
@@ -223,7 +222,7 @@ class ScheduleParser():
 
         EG:08/24/15-12/18/15
         """
-        results = re.match(self.field_patterns[2], self.curr_string)
+        results = re.match(self.field_patterns["meeting_dates"], self.curr_string)
         self.fields["meeting_dates"] = (results.group(1), results.group(2))
         self.step_numb += 1
 
@@ -245,8 +244,8 @@ class ScheduleParser():
 
         3. There are no more meeting to process
         """
-        results = re.findall(self.field_patterns[3], self.curr_string)
-        section = re.match(self.field_patterns[0], self.curr_string)
+        results = re.findall(self.field_patterns["days"], self.curr_string)
+        # Not sure why this line exists ->section = re.match(self.field_patterns[0], self.curr_string)
         if self.curr_string == "ARR.":  # If this class has no meeting dates this is the end of the state machine loop
             self.step_numb = 14
         elif results: # Normal class with days listed, proceed to the next state
@@ -264,7 +263,7 @@ class ScheduleParser():
         """
         There will be two times, start and end times for each course meeting
         """
-        results = re.match(self.field_patterns[4], self.curr_string)
+        results = re.match(self.field_patterns["meeting_dates"], self.curr_string)
         if results:
             if self.step_numb == 11:
                 self.add_to_field_list("start_times", self.curr_string)
