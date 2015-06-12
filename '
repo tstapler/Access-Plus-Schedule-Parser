@@ -7,9 +7,7 @@ from datetime import datetime
 import pytz
 from tzlocal import get_localzone
 
-global debug
-debug = False
-
+#TODO: Fix parsing for strange schedule types
 #TODO: Handle Command Line Arguments for the html file
 class ScheduleParser():
     """
@@ -36,15 +34,12 @@ class ScheduleParser():
             "instructor": list()
         }
         self.field_patterns = {
-                "numb_section_name_credits" : re.compile('(.* \d\d\d\w?)section (\w)(.*)(\d\.\d)'),
-                "course_numb" : re.compile('.* \d\d\d'),
-                "section" : re.compile('section (\d?\d?\w)'),
-                "credits" : re.compile('.*(\d\.\d)'),
+                "section" : re.compile('section *(.*)'),
+                "credits" : re.compile('(\d\.\d)'),
                 "meeting_dates" : re.compile('^(\d\d/\d\d/\d\d)-(\d\d/\d\d/\d\d)'),
-                "days" : re.compile(r'\b[MTWRFS]\b'),
+                "days" : re.compile(r'\b[MTWRF]\b'),
                 "time" : re.compile('\d\d:\d\d \s*'),
                 "date": re.compile('.*(\d\d/\d\d/\d\d\d\d).*')
-
                 }
 
     def __str__(self):
@@ -64,26 +59,22 @@ class ScheduleParser():
         """
         Set the string that will be operated on
         """
-        self.curr_string = string.replace('\xa0', '').replace('\n', '').strip()
+        self.curr_string = string.strip().replace('\xa0', '')
 
     def add_to_field_list(self, field, value):
         """
-        Enable to the ability to add to an empty list
+        handle adding values to self.fields so
         """
-        if type(self.fields[field]) is list:
-            self.fields[field].append(value)
+        if (self.fields[field] == ""):
+            self.fields[field] = [value]
         else:
-            print(self.fields[field])
-            if self.fields[field] == "":
-                self.fields[field] = [ value ]
+            self.fields.setdefault(field, list()).append(value)
 
     def parse(self):
         """
         Move throughout the state machine.
         """
-        if debug:
-            print(self.step_numb)
-
+        print(self.step_numb)
         if self.step_numb == 0:
             self.set_course_numb()
 
@@ -138,28 +129,17 @@ class ScheduleParser():
             return None
         return ''.join(BeautifulSoup(html).findAll(text=True))
 
+    #TODO: Modify to handle the strange new formats
     def set_course_numb(self):
         """
-        Step 0:
         Grab the course numb
         EG: School 101
         """
-        results = re.match(self.field_patterns["numb_section_name_credits"], self.curr_string)
-
-        if results:
-            self.fields["course_numb"] = results.group(1)
-            self.fields["section"]= results.group(2)
-            self.fields["course_name"] = results.group(3).rstrip()
-            self.fields["credits"] = results.group(4)
-            self.step_numb = 4
-
-        else:
-            self.fields["course_numb"] = self.curr_string
-            self.step_numb += 1
+        self.fields["course_numb"] = self.curr_string
+        self.step_numb += 1
 
     def set_section_id(self):
         """
-        Step 1:
         Grab the section id
         EG: section 1
         """
@@ -171,7 +151,6 @@ class ScheduleParser():
 
     def set_course_name(self):
         """
-        Step 2:
         Return the name of the course
         EG: How to College
         """
@@ -180,7 +159,6 @@ class ScheduleParser():
 
     def set_numb_credits(self):
         """
-        Step 3:
         Grab the number of credits the course is
         EG: 12.0
         """
@@ -192,7 +170,6 @@ class ScheduleParser():
 
     def set_drop_date(self):
         """
-        Step 4:
         Grab the last day you can drop the class
         EG: Last day to drop w/o extenuating circumstances: 11/08/2299
         """
@@ -203,7 +180,6 @@ class ScheduleParser():
 
     def set_reference_numb(self):
         """
-        Step 5:
         Grab the reference number for this section of the course
         It is usually used for adding a specific section
         EG: 3356705
@@ -216,7 +192,6 @@ class ScheduleParser():
 
     def set_requirements(self):
         """
-        Step 6:
         Grab the prerequisites for the class
 
         EG: H20 342 (Underwater Basketweaving)
@@ -225,14 +200,11 @@ class ScheduleParser():
             return
         elif "Notes:" in self.curr_string:
             self.step_numb += 1
-        elif "Meeting Dates:" in self.curr_string:
-            self.step_numb = 8
         else:
             self.fields["recs"] += self.curr_string
 
     def set_notes(self):
         """
-        Step 7:
         Grab any notes about the class
 
         EG: MOST SECTIONS OF THIS CLASS WILL NOT PASS
@@ -244,7 +216,6 @@ class ScheduleParser():
 
     def set_meeting_dates(self):
         """
-        Step 8:
         Grab the meeting dates for the class
 
         This is most important for classes which do not last the whole semester
@@ -257,10 +228,8 @@ class ScheduleParser():
             self.step_numb += 1
         else:
             return
-
     def skip_headers(self):
         """
-        Step 9:
         Skip useless strings
 
         The parser generates some useless header strings, skip them
@@ -270,7 +239,6 @@ class ScheduleParser():
 
     def set_meeting_days(self):
         """
-        Step 10:
         Check for the four possible cases:
         1. This class is arranged so no meetings
 
@@ -278,30 +246,26 @@ class ScheduleParser():
 
         3. There are no more meeting to process
         """
-        if self.curr_string == "MTWRF": #Special case for class that meets every day
-            self.curr_string = " ".join(self.curr_string)
         results = re.findall(self.field_patterns["days"], self.curr_string)
-
+        # Not sure why this line exists ->section = re.match(self.field_patterns[0], self.curr_string)
         if self.curr_string == "ARR.":  # If this class has no meeting dates this is the end of the state machine loop
             self.step_numb = 14
-
         elif results: # Normal class with days listed, proceed to the next state
             days = ""
             self.step_numb += 1
             for result in results:
                 days += result
             self.add_to_field_list("days", " ".join(days))
-
-        else: #This is the start of a new course
+        else:
             self.finish_current_course()
+            self.step_numb = 0
             self.set_course_numb()
 
     def set_meeting_times(self):
         """
-        Step 11 & 12:
         There will be two times, start and end times for each course meeting
         """
-        results = re.match(self.field_patterns["time"], self.curr_string)
+        results = re.match(self.field_patterns["meeting_dates"], self.curr_string)
         if results:
             if self.step_numb == 11:
                 self.add_to_field_list("start_times", self.curr_string)
@@ -311,32 +275,17 @@ class ScheduleParser():
 
     def set_location(self):
         """
-        Step 13:
         Location Is Easy, Just add append the string and check for another meeting day
         """
-        another_meeting = re.match(self.field_patterns["days"], self.curr_string)
-        new_course = re.match(self.field_patterns["numb_section_name_credits"], self.curr_string)
-        if another_meeting:  #There is no location or instructor, this is another meeting time
-            self.step_numb = 10
-            self.add_to_field_list("location", "Unknown")
-            self.add_to_field_list("instructor", "Unknown")
-            self.set_meeting_days()
-        elif new_course:
-            self.add_to_field_list("location", "Unknown")
-            self.add_to_field_list("instructor", "Unknown")
-            self.finish_current_course()
-            self.set_course_numb()
-        else:
-            self.add_to_field_list("location", self.curr_string) # Decide if we will use this function or a call to fields[]
-            self.step_numb += 1
+        self.add_to_field_list("location", self.curr_string)
+        self.step_numb += 1  # Return to days because there may be a second meeting time
 
     def set_instructor(self):
         """
-        Step 14:
         Set the course's Instructor
         """
         self.add_to_field_list("instructor", self.curr_string)
-        self.step_numb = 10 # Return to step ten to see if there is another meeting
+        self.step_numb = 10
 
     def finish_current_course(self):
         """
@@ -358,17 +307,17 @@ class ScheduleParser():
                       self.fields["end_times"], self.fields["location"], self.fields["instructor"])
 
     #TODO: Check if it's possible to find the textbook info
-    def parse_html(self, page_html):
+    def parse_html(self, html):
         """
         Parse the html file passed into the function
 
         It should be the HTML file from the view schedule page of Access Plus
         """
-        with open(page_html, 'r') as schedule:
+        with open(html) as schedule:
             soup = BeautifulSoup(schedule)
+            soup.encode('utf-8', 'ignore')
 
-
-            flag = False
+            printing = False
             count = 0
             details = 0
             for span in soup.find_all("td"):
@@ -379,23 +328,16 @@ class ScheduleParser():
                     details += 1
                 if "View Complete Textbook List" in span_text:
                     if count >= 1 and details == 5:
-                        flag = True
+                        printing = True
                     count += 1
-                elif "FOOTER" in span_text and flag:
-                    flag = False
-                elif "%=" in span_text and flag:
+                elif "FOOTER" in span_text and printing:
+                    printing = False
+                elif "%=" in span_text and printing:
                     continue
-                elif span_text != "" and flag:
+                elif span_text != "" and printing:
                     if(span_text.strip() != ""):
                         self.parse()
-                        if debug:
-                            print(span_text)
-
-            if self.step_numb != 0:
-                if self.step_numb == 13:
-                    self.add_to_field_list("location", "Unknown")
-                    self.add_to_field_list("instructor", "Unknown")
-                self.finish_current_course()
+                        print(span_text)
 
     def print_schedule(self):
         """
@@ -403,12 +345,11 @@ class ScheduleParser():
         """
         print("\nCourse Schedule:\n")
         for course in self.courses:
-            print(str(course))
-            print("There are " + str(len(course.meeting_times)) + " meeting times." )
-            for number, time in enumerate(course.meeting_times, start=1):
-                print("Number " + str(number) + ": " + str(time) + "\n")
+            print(str(course) + "\n")
+            print("There are " + str(len(course.meeting_times)) + " meeting times.\n" )
+            for time in course.meeting_times:
+                print(time)
 
-#TODO: Add a Notes section to the Course object
 class Course:
     """
     This class serves simply as a convenient data structure for holding the data generated by the parser
@@ -458,7 +399,7 @@ class MeetingTime():
 
     def days_to_ics(self):
         """
-        Convert the days the class meets from M, T, W, R, F, S to MO, TU, WE, TH, FR, SA
+        Convert the days the class meets from M, T, W, R, F to MO, TU, WE, TH, FR
         Return the converted strings to
         :return:
         """
@@ -467,7 +408,6 @@ class MeetingTime():
         self.days = self.days.replace("W", "WE")
         self.days = self.days.replace("R", "TH")
         self.days = self.days.replace("F", "FR")
-        self.days = self.days.replace("S", "SA")
 
     def time_struct_to_datetime(self):
         """
@@ -556,24 +496,19 @@ class IcsGenerator():
             for meeting in course.meeting_times:
                 self.ics_calendar.add_component(self.create_course(course, meeting))
 
-    def export_to_ics(self, name):
+    def export_to_ics(self):
         """
         Export a properly formatted .ics file
         """
-        with open(name + ".ics", "w") as file:
+        with open("class_schedule.ics", "w") as file:
             file.write(self.ics_calendar.to_ical().decode('utf-8'))
 
 if __name__ == "__main__":
 
 
     import sys, getopt
-
-    debug = True
-
     parser = ScheduleParser()
-    parser.parse_html("resources/tyler_schedule_fall_2015.html")
-
+    parser.parse_html("sarahs_schedule.html")
     parser.print_schedule()
-
     ics = IcsGenerator(parser)
-    ics.export_to_ics("tyler_schedule")
+    ics.export_to_ics()
