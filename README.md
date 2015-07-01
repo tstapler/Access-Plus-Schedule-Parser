@@ -1,15 +1,17 @@
 # Access-Plus-Schedule-Parser
 __This module can rip the important schedule information from an Access Plus HTML page.__ 
 
-###DONE:
-* Parse an Access Plus Schedule page and grab schedule data.
-* Increase the amount of data that the parser is able to grab
+###Features:
+* Grab relevant schedule data from the Access Plus schedule page
 * Turn parsed data into .ics file
 
 ###IN PROGRESS:
-* Increase parser’s compatability with different schedules
-* Bug Fixes
+* Unit tests
+* Add meeting dates to google calendar automatically
 
 ###TODO:
+* Automatic login and parsing of AccessPlus
 * Create a GUI for the program
-* Add meeting dates to google calendar automatically
+* Create Django Site
+
+More info on [Trello](https://trello.com/b/TxH6PmzO/access-plus-web-parser “Trello Page”) 
