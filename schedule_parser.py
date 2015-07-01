@@ -3,7 +3,7 @@ import re
 from icalendar import Calendar, Event, vRecur, vWeekday, vDatetime, vText
 import time
 from time import mktime
-from datetime import datetime
+from datetime import datetime as dt
 import pytz
 from tzlocal import get_localzone
 import click
@@ -463,67 +463,39 @@ class MeetingTime():
         self.location = location
         self.start_time = start_time
         self.end_time = end_time
-        self.days = days
+        self.days = self.days_to_ics(days)
         self.meeting_dates = meeting_dates
-        self.start_in_datetime, self.end_in_datetime,self.repeat_until = self.time_struct_to_datetime()
-        self.days_to_ics()
-
-    def days_to_ics(self):
-        """
-        Convert the days the class meets from M, T, W, R, F, S to MO, TU, WE, TH, FR, SA
-        Return the converted strings to
-        :return:
-        """
-        self.days = self.days.replace("M", "MO")
-        self.days = self.days.replace("T", "TU")
-        self.days = self.days.replace("W", "WE")
-        self.days = self.days.replace("R", "TH")
-        self.days = self.days.replace("F", "FR")
-        self.days = self.days.replace("S", "SA")
-
-    def time_struct_to_datetime(self):
-        """
-        Convert all of the parsed times into datetimes so they can be easily added
-        :return: a start time and end time datetime objects
-        """
-        tz = get_localzone()
-        ics_start = self.build_datetime(self.start_time, self.meeting_dates[0])
-        ics_end = self.build_datetime(self.end_time, self.meeting_dates[0])
-        ics_repeat_until = self.build_datetime(self.end_time,self.meeting_dates[1])
-        ics_start = datetime.fromtimestamp(mktime(ics_start))
-        ics_end = datetime.fromtimestamp(mktime(ics_end))
-        ics_repeat_until = datetime.fromtimestamp(mktime(ics_repeat_until))
-        return ics_start.replace(tzinfo=tz), ics_end.replace(tzinfo=tz), ics_repeat_until.replace(tzinfo=tz)
-
-    def build_datetime(self, in_time, in_date):
-        """
-        Make a datetime from the various strings that we were able to parse
-        :param in_time: a meeting time string(s) for converting
-        :param in_date: the date to append to the time
-        :return: return the completed datetime object
-        """
-        # Append an M to the end of each string to make A and P into AM or PM respectively
-        ics_start =  in_time + "M"
-        # Append the Date to the time string
-        ics_start = ics_start + " " + in_date
-        # Parse the string to pull out the relevant time data into an object
-
-        #TODO: Address Y2K issues found by testing
-        return time.strptime(ics_start, "%I:%M %p %x")
-
-
-    def datetime_to_string(self, datetime):
-        """
-        Method which returns a time in string form properly formatted for .ics
-        :param datetime: a time object
-        :return: properly formatted string
-        """
-        return datetime.isoformat()
+        self.start = self.build_datetime(meeting_dates[0], start_time)
+        self.end = self.build_datetime(meeting_dates[0], end_time)
+        self.repeat_until = self.build_datetime(meeting_dates[1], end_time)
 
     def __str__(self):
         return "This meeting is taught by " + self.instructor + " in " + self.location + " from " + self.start_time \
                 + " to " + self.end_time + " on " + self.days
 
+    def days_to_ics(self, days):
+        """
+        Convert the days the class meets from M, T, W, R, F, S to MO, TU, WE, TH, FR, SA
+        Return the converted strings to
+        :return:
+        """
+        days = days.replace("M", "MO")
+        days = days.replace("T", "TU")
+        days = days.replace("W", "WE")
+        days = days.replace("R", "TH")
+        days = days.replace("F", "FR")
+        days = days.replace("S", "SA")
+
+        return days
+
+    def build_datetime(self, date, time):
+        """
+        Convert all of the parsed times into datetimes so they can be easily added
+        :return: a start time and end time datetime objects
+        """
+        tz = get_localzone()
+        time += "M"
+        return dt.strptime(" ".join([date, time]), "%x %I:%M %p")
 
 class IcsGenerator():
     """
@@ -552,13 +524,14 @@ class IcsGenerator():
         event['summary'] = vText(course.number + ": " + course.name)
         #TODO: Fix the output for description
         #event['description'] = vText(course.recs) <-- Currently Giving strange output
+        print("Recs:", course.recs, "Notes:", course.notes)
         event['location'] = vText(meeting.location)
-        event.add('dtstart', meeting.start_in_datetime)
-        event.add('dtend', meeting.end_in_datetime)
+        event.add('dtstart', self.dt_to_string(meeting.start_time))
+        event.add('dtend', self.dt_to_string(meeting.end_time))
         byday_list = list()
         for day in meeting.days.split():
             byday_list.append(vWeekday(day))
-        event.add('rrule',{'freq': 'WEEKLY', 'byday':byday_list, 'until': meeting.repeat_until})
+        event.add('rrule',{'freq': 'WEEKLY', 'eyday':byday_list, 'until': self.dt_to_string(meeting.repeat_until)})
 
         return event
 
@@ -569,6 +542,14 @@ class IcsGenerator():
         for course in self.target_parser.courses:
             for meeting in course.meeting_times:
                 self.ics_calendar.add_component(self.create_course(course, meeting))
+
+    def dt_to_string(self, datetime):
+        """
+        Method which returns a time in string form properly formatted for .ics
+        :param datetime: a time object
+        :return: properly formatted string
+        """
+        return datetime.isoformat()
 
     def export_to_ics(self, name):
         """

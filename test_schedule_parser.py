@@ -1,6 +1,6 @@
 __author__ = 'Tyler Stapler'
 
-import schedule_parser, pytest
+import schedule_parser, pytest, time
 
 #TODO: Tests for ScheduleParser
 @pytest.fixture
@@ -407,14 +407,26 @@ def test_meeting_time(meeting_time):
 
 #TODO: Tests for days_to_ics
 def test_days_to_ics(meeting_time):
-    meeting_time.days = "M T W R F S"
-    meeting_time.days_to_ics()
+    assert meeting_time.days_to_ics("M T W R F S") == "MO TU WE TH FR SA"
 
-    assert meeting_time.days == "MO TU WE TH FR SA"
-
-#TODO: Tests for time_struct_to_datetime
 #TODO: Tests for build_datetime
+def test_build_datetime(meeting_time):
+    #Edge Case One - AM
+    out_time = meeting_time.build_datetime("07/08/15", "10:00 A")
+    correct_time = "2015-07-08 10:00:00"
+
+    assert str(out_time) == correct_time
+
+    #Edge Case Two - PM
+    out_time = meeting_time.build_datetime("07/08/15", "10:00 P")
+    correct_time = "2015-07-08 22:00:00"
+
+    assert str(out_time) == correct_time
+
 #TODO: Tests for datetime_to_string
+def test_datetime_to_string(meeting_time):
+
+    assert False
 
 #TODO: Tests for IcsGenerator
 #TODO: Tests for create_course
