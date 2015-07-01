@@ -1,7 +1,6 @@
 from bs4 import BeautifulSoup
 import re
 from icalendar import Calendar, Event, vRecur, vWeekday, vDatetime, vText
-import time
 from time import mktime
 from datetime import datetime as dt
 import pytz
@@ -429,8 +428,8 @@ class Course:
         self.name = name
         self.section = section
         self.class_credits = class_credits
-        self.recs = recs
-        self.notes = notes
+        self.recs = empty_check(recs)
+        self.notes = empty_check(notes)
         self.meeting_dates = meeting_dates
         self.days = days
         self.start_times = start_times
@@ -442,23 +441,28 @@ class Course:
         for location, instructor, start_time, end_time, day in zip(locations, instructors, start_times, end_times, days):
             self.meeting_times.append(MeetingTime(instructor, location, start_time, end_time, day, meeting_dates))
 
-    #TODO: Add notes section to the str output
     def __str__(self):
         """
         Print a pleasant looking string for the Course object
         :return:
         """
-        return self.number + ": " + self.name + ", section " + self.section + ", a " + self.class_credits + " credit class. \n\n" \
-            "This class meets in " + " and ".join(self.locations) + " on " + " and ".join(self.days)       \
-            + " starting at " + " or ".join(self.start_times) + " and ending at " + " or ".join(self.end_times) + ". "  \
-            + "The meeting dates are " + self.meeting_dates[0] + " to " + self.meeting_dates[1] + ". The Instructor(s) for the meetings are: " \
+        return self.number + ": " + self.name + ", section " + self.section \
+            + ", a " + self.class_credits + " credit class. \n\n" \
+            + "This class meets in " + " and ".join(self.locations) + " on "\
+            + " and ".join(self.days) + " starting at "\
+            + " or ".join(self.start_times) + " and ending at "\
+            + " or ".join(self.end_times) + ". "  \
+            + "The meeting dates are " + self.meeting_dates[0] + " to "\
+            + self.meeting_dates[1] + ". The Instructor(s) for the meetings are: " \
             + " and ".join(self.instructors) + "."
 
 class MeetingTime():
     """
-    A unique meeting time for a course, this could mean the course meets with a different time, location, or instructor.
+    A unique meeting time for a course, this could mean the course meets with a
+    different time, location, or instructor.
     """
-    def __init__(self, instructor, location, start_time, end_time, days, meeting_dates):
+    def __init__(self, instructor, location, start_time, end_time, days,
+            meeting_dates):
         self.instructor = instructor
         self.location = location
         self.start_time = start_time
@@ -470,12 +474,14 @@ class MeetingTime():
         self.repeat_until = self.build_datetime(meeting_dates[1], end_time)
 
     def __str__(self):
-        return "This meeting is taught by " + self.instructor + " in " + self.location + " from " + self.start_time \
+        return "This meeting is taught by " + self.instructor + " in "\
+                + self.location + " from " + self.start_time \
                 + " to " + self.end_time + " on " + self.days
 
     def days_to_ics(self, days):
         """
-        Convert the days the class meets from M, T, W, R, F, S to MO, TU, WE, TH, FR, SA
+        Convert the days the class meets from M, T, W, R, F, S to
+        MO, TU, WE, TH, FR, SA
         Return the converted strings to
         :return:
         """
@@ -490,17 +496,19 @@ class MeetingTime():
 
     def build_datetime(self, date, time):
         """
-        Convert all of the parsed times into datetimes so they can be easily added
-        :return: a start time and end time datetime objects
+        Turn the date and time into a datetime object
+        :return: a date time object with time zone
         """
-        tz = get_localzone()
         time += "M"
-        return dt.strptime(" ".join([date, time]), "%x %I:%M %p")
+        tz = get_localzone()
+        thing = dt.strptime(" ".join([date, time]), "%x %I:%M %p").replace(tzinfo=tz)
+        return thing
 
 class IcsGenerator():
     """
-    Generates the .ics file which can then be fed into iCalendar, Google Calendar, Microsoft Outlook and various other
-    supporters of the open source .ics specification.
+    Generates the .ics file which can then be fed into iCalendar,
+    Google Calendar, Microsoft Outlook and various other supporters of the open
+    source .ics specification.
     """
     def __init__(self, target_parser):
         """
@@ -513,8 +521,7 @@ class IcsGenerator():
         self.ics_calendar.add('version','2.0')
         self.add_courses_to_calendar()
 
-    @staticmethod
-    def create_course(course, meeting):
+    def create_course(self, course, meeting):
         """
         Create a new iCalendar Event to be created
         :param course: the ''Course()'' object that needs to be changed into ics format
@@ -522,16 +529,14 @@ class IcsGenerator():
         """
         event = Event()
         event['summary'] = vText(course.number + ": " + course.name)
-        #TODO: Fix the output for description
-        #event['description'] = vText(course.recs) <-- Currently Giving strange output
-        print("Recs:", course.recs, "Notes:", course.notes)
+        event['description'] = " ".join(("Recs:", course.recs, "Notes:", course.notes))
         event['location'] = vText(meeting.location)
-        event.add('dtstart', self.dt_to_string(meeting.start_time))
-        event.add('dtend', self.dt_to_string(meeting.end_time))
+        event.add('dtstart', meeting.start)
+        event.add('dtend', meeting.end)
         byday_list = list()
         for day in meeting.days.split():
             byday_list.append(vWeekday(day))
-        event.add('rrule',{'freq': 'WEEKLY', 'eyday':byday_list, 'until': self.dt_to_string(meeting.repeat_until)})
+        event.add('rrule',{'freq': 'WEEKLY', 'byday':byday_list, 'until': meeting.repeat_until})
 
         return event
 
@@ -543,13 +548,6 @@ class IcsGenerator():
             for meeting in course.meeting_times:
                 self.ics_calendar.add_component(self.create_course(course, meeting))
 
-    def dt_to_string(self, datetime):
-        """
-        Method which returns a time in string form properly formatted for .ics
-        :param datetime: a time object
-        :return: properly formatted string
-        """
-        return datetime.isoformat()
 
     def export_to_ics(self, name):
         """
@@ -560,14 +558,32 @@ class IcsGenerator():
         with open(name, "w") as file:
             file.write(self.ics_calendar.to_ical().decode('utf-8'))
 
+def dt_to_string(datetime):
+    """
+    Method which returns a time in string form properly formatted for .ics
+    :param datetime: a time object
+    :return: properly formatted string
+    """
+    return datetime.isoformat()
+
+def empty_check(string):
+    if "" == string:
+        return "None"
+    else:
+        return string
+
 def test(ctx, param, value):
-        #Run the test suite verbosely
-        import pytest
-        pytest.main("-vv")
-        ctx.exit()
+    if not value or ctx.resilient_parsing:
+        return
+    #Run the test suite verbosely
+    import pytest
+    pytest.main("-vv")
+    ctx.exit()
 
 def generator(ctx, param, value):
         #Generate new output files for testing
+        if not value or ctx.resilient_parsing:
+            return
         import sys
         parser = ScheduleParser()
         backup = sys.stdout
@@ -582,9 +598,9 @@ def generator(ctx, param, value):
         ctx.exit()
 
 @click.command()
-@click.option('-t', '--test', help="Run the automatic test suite", is_flag=True, callback=test, expose_value=False, is_eager=True)
+@click.option('-t', '--test', help="Run the automatic test suite", is_flag=True, callback=test, expose_value=False, default=False)
 @click.option('-d', '--debug', help='Print the output of the state machine', is_flag=True)
-@click.option('-g', '--generate', help='Generate testing data', is_flag=True, callback=generator, expose_value=False, is_eager=True)
+@click.option('-g', '--generate', help='Generate testing data', is_flag=True, callback=generator, expose_value=False)
 @click.option('-p', '--profile', help='Profile the functions of the parser', is_flag=True)
 @click.option('-i','--input', 'schedule', type=click.Path(exists=True), default='resources/tyler_schedule_fall_2015.html', help='The HTML file containing the schedule')
 @click.option('-o', '--output', 'output', type=click.Path(), default='resources/tyler_schedule', help='The name of the schedule to be output')
