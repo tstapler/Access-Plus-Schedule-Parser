@@ -38,7 +38,7 @@ class Course(models.Model):
                 (5, "Five"),
                 (6, "Six"),
             )
-    credits = models.IntegerField(choices=CREDITS)
+    credits = models.IntegerField(choices=CREDITS, default='3')
     notes = models.TextField()
     requirements = models.TextField()
     drop_date = models.DateField()
@@ -60,8 +60,8 @@ class MeetingTime(models.Model):
             ('SA', "S"),
             )
     days =  models.CharField(max_length=10)
-    start_time = TimeField()
-    end_time = TimeField()
+    start_time = models.DateTimeField()
+    end_time = models.DateTimeField()
     instructor = models.CharField(max_length=30)
     location = models.CharField(max_length=30)
 
