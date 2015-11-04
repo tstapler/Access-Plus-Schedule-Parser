@@ -1,10 +1,10 @@
 from django.db import models
-
+from django.utils import timezone
 # Create your models here.
 
 class Student(models.Model):
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
+    first_name = models.CharField(max_length=30, default='John')
+    last_name = models.CharField(max_length=30, default='Doe')
     email = models.EmailField()
 
     def __str__(self):
@@ -18,7 +18,7 @@ class Schedule(models.Model):
             ('summer', 'Summer'),
             )
     semester = models.CharField(max_length=6, choices=SEMESTERS, default='fall')
-    year = models.DateTimeField()
+    year = models.DateTimeField(default=timezone.now)
     schedule_html = models.FileField(null=True)
 
     def __str__(self):
@@ -26,10 +26,10 @@ class Schedule(models.Model):
 
 class Course(models.Model):
     schedule = models.ManyToManyField(Schedule)
-    course_name = models.CharField(max_length=30)
-    course_number = models.CharField(max_length=30)
+    course_name = models.CharField(max_length=30, default='Default Course')
+    course_number = models.CharField(max_length=30, default='College 101')
     section_id = models.CharField(max_length=2, default='X')
-    ref_number = models.CharField(max_length=10)
+    ref_number = models.CharField(max_length=10, default='50000')
     CREDITS = (
                 (1, "One"),
                 (2, "Two"),
@@ -38,12 +38,12 @@ class Course(models.Model):
                 (5, "Five"),
                 (6, "Six"),
             )
-    credits = models.IntegerField(choices=CREDITS, default='3')
-    notes = models.TextField()
-    requirements = models.TextField()
-    drop_date = models.DateField()
-    start_date = models.DateField()
-    end_date = models.DateField()
+    credits = models.IntegerField(choices=CREDITS, default=3)
+    notes = models.TextField(default='None')
+    requirements = models.TextField(default='None')
+    drop_date = models.DateField(default=timezone.now)
+    start_date = models.DateField(default=timezone.now)
+    end_date = models.DateField(default=timezone.now)
 
 
     def __str__(self):
@@ -59,13 +59,11 @@ class MeetingTime(models.Model):
             ('FR', "F"),
             ('SA', "S"),
             )
-    days =  models.CharField(max_length=10)
-    start_time = models.DateTimeField()
-    end_time = models.DateTimeField()
-    instructor = models.CharField(max_length=30)
-    location = models.CharField(max_length=30)
+    days =  models.CharField(max_length=2, choices=DAYS)
+    start_time = models.TimeField(default='8:10')
+    end_time = models.TimeField(default='9:00')
+    instructor = models.CharField(max_length=30, default-"N\A")
+    location = models.CharField(max_length=30, default="N\A")
 
     def __str__(self):
         return self.course.course_number + " with " + self.instructor + " on " + self.days
-
-
