@@ -1,1 +1,4 @@
 .idea/
+*.pyc
+/env
+*.sqlite3
